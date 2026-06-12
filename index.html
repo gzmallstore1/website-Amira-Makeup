@@ -166,6 +166,7 @@
             letter-spacing: 3px;
             font-size: 0.8rem;
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
         }
         
         .btn:hover { 
@@ -201,7 +202,7 @@
 
         /* Asymmetrical Editorial Services */
         .services { 
-            padding: 0 10% 140px 10%;
+            padding: 0 10% 60px 10%;
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
             gap: 40px; 
@@ -245,83 +246,52 @@
             letter-spacing: 0.5px;
         }
 
-        /* Portfolio Studio Gallery with Filter Feature */
+        /* Portfolio Studio Gallery dengan Tinggi Kompak */
         .gallery { 
             background: #020202;
             padding: 0 10% 140px 10%; 
         }
 
-        .filter-container {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .filter-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            margin: 0 15px;
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            color: var(--gold-premium);
-        }
-
         .gallery-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); 
-            gap: 40px; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; /* Jarak antar foto lebih rapat dan rapi */
         }
         
         .gallery-item { 
-            height: 550px; 
-            display: flex; 
-            flex-direction: column;
-            justify-content: flex-end;
+            height: 380px; /* Dipersempit agar ketika banyak foto tidak memakan space panjang ke bawah */
             overflow: hidden; 
             position: relative; 
             background: var(--surface-dark);
             border: 1px solid var(--border-subtle);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        .gallery-item.hide {
-            display: none;
+            cursor: pointer;
         }
         
         .gallery-item img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; 
-            position: absolute;
-            top: 0;
-            left: 0;
-            filter: grayscale(100%) brightness(75%);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease; 
+            object-fit: cover; /* Memotong foto secara proporsional di halaman grid */
+            filter: grayscale(30%) brightness(85%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease; 
         }
         
         .gallery-item:hover img { 
-            transform: scale(1.03);
-            filter: grayscale(0%) brightness(95%);
+            transform: scale(1.05);
+            filter: grayscale(0%) brightness(100%);
         }
 
         .gallery-caption {
-            position: relative;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             z-index: 2;
-            background: linear-gradient(to top, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.4) 75%, transparent 100%);
-            padding: 45px 35px;
+            background: linear-gradient(to top, rgba(5, 5, 5, 0.9) 0%, transparent 100%);
+            padding: 25px;
             color: var(--text-light);
-            transform: translateY(15px);
-            opacity: 0.85;
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: transform 0.4s ease, opacity 0.4s ease;
         }
 
         .gallery-item:hover .gallery-caption {
@@ -330,105 +300,67 @@
         }
 
         .gallery-caption h4 {
-            font-size: 1.6rem;
+            font-size: 1.2rem;
             color: var(--text-light);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             font-weight: 400;
             text-transform: uppercase;
         }
 
         .gallery-caption p {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--gold-premium);
             font-weight: 300;
-            letter-spacing: 1px;
         }
 
-        /* Package Simulation Section */
-        .concierge-calculator {
-            background: var(--surface-dark);
-            padding: 0 10% 140px 10%;
-            border-top: 1px solid var(--border-subtle);
-        }
-
-        .calc-box {
-            max-width: 800px;
-            margin: 0 auto;
-            background: #050505;
-            border: 1px solid var(--border-subtle);
-            padding: 50px 40px;
-        }
-
-        .calc-title {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 40px;
-            color: var(--text-light);
-            text-transform: uppercase;
-        }
-
-        .calc-option {
+        /* PREMIUM LIGHTBOX (POP-UP FULL SCREEN VIEW) */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 5, 0.95);
+            z-index: 2000;
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
         }
 
-        .calc-label {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 0.95rem;
-            color: var(--text-light);
-            cursor: pointer;
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
         }
 
-        .calc-checkbox {
-            appearance: none;
-            width: 18px;
-            height: 18px;
-            border: 1px solid var(--gold-premium);
-            background: transparent;
-            cursor: pointer;
-            position: relative;
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain; /* Memastikan foto terlihat utuh/full tanpa terpotong sama sekali */
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .calc-checkbox:checked::before {
-            content: '';
+        .lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
             position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 10px;
-            height: 10px;
-            background-color: var(--gold-premium);
-        }
-
-        .calc-price {
-            font-family: 'Cinzel', serif;
-            color: var(--gold-premium);
-            font-size: 1.1rem;
-        }
-
-        .calc-total-box {
-            margin-top: 40px;
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-hover);
-        }
-
-        .total-text {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-        }
-
-        .total-amount {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
+            top: 30px;
+            right: 40px;
             color: var(--text-light);
-            margin: 10px 0 35px 0;
+            font-size: 2.5rem;
+            cursor: pointer;
+            font-weight: 200;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--gold-premium);
         }
 
         /* Accordion FAQ Section */
@@ -624,11 +556,12 @@
             .section-title { font-size: 2.6rem; }
             header { flex-direction: column; gap: 25px; padding: 2rem 5%; }
             nav a { margin: 0 15px; font-size: 0.75rem; letter-spacing: 2px; }
-            .services, .gallery, .concierge-calculator, .faq-section, .location-section { padding-left: 5%; padding-right: 5%; }
+            .services, .gallery, .faq-section, .location-section { padding-left: 5%; padding-right: 5%; }
             .location-grid { grid-template-columns: 1fr; gap: 40px; }
             .map-wrapper { height: 300px; }
             .wa-float { bottom: 25px; right: 25px; padding: 16px 26px; font-size: 0.75rem; }
-            .calc-box { padding: 30px 20px; }
+            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
+            .gallery-item { height: 280px; }
         }
     </style>
 </head>
@@ -639,10 +572,8 @@
     <nav>
         <a href="#services">Layanan</a>
         <a href="#gallery">Portofolio</a>
-        <a href="#concierge">Kalkulator</a>
         <a href="#faq">FAQ</a>
         <a href="#location">Lokasi</a>
-        <a href="#contact">Kontak</a>
     </nav>
 </header>
 
@@ -683,100 +614,57 @@
 <div class="gallery" id="gallery">
     <div class="section-header reveal">
         <h2 class="section-title">The Portfolio</h2>
-        <p class="section-subtitle">Eksplorasi visual karya tata rias multidimensional dan kurasi busana eksklusif oleh Amirra Julian.</p>
-    </div>
-
-    <!-- Interactive Gallery Filter System -->
-    <div class="filter-container reveal">
-        <button class="filter-btn active" onclick="filterGallery('all')">All Works</button>
-        <button class="filter-btn" onclick="filterGallery('makeup')">Makeup Artistry</button>
-        <button class="filter-btn" onclick="filterGallery('attire')">Premium Attire</button>
+        <p class="section-subtitle">Eksplorasi visual karya tata rias multidimensional dan kurasi busana eksklusif oleh Amirra Julian. Klik foto untuk melihat tampilan penuh.</p>
     </div>
     
     <div class="gallery-grid reveal">
         <!-- Portofolio 1 -->
-        <div class="gallery-item" data-category="makeup">
+        <div class="gallery-item" onclick="openLightbox(this)">
             <img src="Foto 1.jpg" alt="High-End Wedding Makeup">
             <div class="gallery-caption">
                 <h4>The Couture Bride</h4>
-                <p>Eksplorasi riasan pengantin dengan teknik eksklusif yang memancarkan aura kemewahan klasik yang timeless.</p>
+                <p>Makeup Artistry</p>
             </div>
         </div>
         <!-- Portofolio 2 -->
-        <div class="gallery-item" data-category="makeup">
+        <div class="gallery-item" onclick="openLightbox(this)">
             <img src="Foto 2.jpg" alt="Editorial Graduation Look">
             <div class="gallery-caption">
                 <h4>The Milestone Radiance</h4>
-                <p>Kombinasi riasan wajah berkarakter halus (fresh flawless) disandingkan dengan kemegahan kebaya kelulusan modern.</p>
+                <p>Makeup Artistry</p>
             </div>
         </div>
         <!-- Portofolio 3 -->
-        <div class="gallery-item" data-category="attire">
+        <div class="gallery-item" onclick="openLightbox(this)">
             <img src="Foto 3.jpg" alt="Premium Attire Rental Showcase">
             <div class="gallery-caption">
                 <h4>The Luxury Silhouette</h4>
-                <p>Kurasi jajaran gaun pesta pilihan yang menonjolkan keindahan potongan siluet dan kenyamanan kain kelas tinggi.</p>
+                <p>Premium Attire</p>
             </div>
         </div>
         <!-- Portofolio 4 -->
-        <div class="gallery-item" data-category="attire">
+        <div class="gallery-item" onclick="openLightbox(this)">
             <img src="Foto 4.jpg" alt="Premium Attire Rental Showcase">
             <div class="gallery-caption">
                 <h4>The Luxury Silhouette</h4>
-                <p>Kurasi jajaran gaun pesta pilihan yang menonjolkan keindahan potongan siluet dan kenyamanan kain kelas tinggi.</p>
+                <p>Premium Attire</p>
             </div>
         </div>
         <!-- Portofolio 5 -->
-        <div class="gallery-item" data-category="attire">
+        <div class="gallery-item" onclick="openLightbox(this)">
             <img src="Foto 5.jpg" alt="Premium Attire Rental Showcase">
             <div class="gallery-caption">
                 <h4>The Luxury Silhouette</h4>
-                <p>Kurasi jajaran gaun pesta pilihan yang menonjolkan keindahan potongan siluet dan kenyamanan kain kelas tinggi.</p>
+                <p>Premium Attire</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Interactive Package Simulator Section -->
-<div class="concierge-calculator" id="concierge">
-    <div class="section-header reveal">
-        <h2 class="section-title">Concierge Simulator</h2>
-        <p class="section-subtitle">Simulasikan kombinasi layanan adibusana dan riasan mewah Anda secara personal dan transparan.</p>
-    </div>
-
-    <div class="calc-box reveal">
-        <h4 class="calc-title">Select Core Additions</h4>
-        
-        <div class="calc-option">
-            <label class="calc-label">
-                <input type="checkbox" class="calc-checkbox" value="350000" onchange="calculateTotal()">
-                Exclusive Graduation Makeup Package
-            </label>
-            <span class="calc-price">Rp 350.000</span>
-        </div>
-
-        <div class="calc-option">
-            <label class="calc-label">
-                <input type="checkbox" class="calc-checkbox" value="1500000" onchange="calculateTotal()">
-                High Fashion Editorial / Bridal MUA
-            </label>
-            <span class="calc-price">Rp 1.500.000</span>
-        </div>
-
-        <div class="calc-option">
-            <label class="calc-label">
-                <input type="checkbox" class="calc-checkbox" value="250000" onchange="calculateTotal()">
-                Premium Attire Rental (Kebaya / Gown)
-            </label>
-            <span class="calc-price">Rp 250.000</span>
-        </div>
-
-        <div class="calc-total-box">
-            <span class="total-text">Estimated Investment</span>
-            <div class="total-amount" id="totalDisplay">Rp 0</div>
-            <a href="https://wa.me/6285157813166" class="btn" id="waCustomBtn">Discuss This Package</a>
-        </div>
-    </div>
+<!-- DYNAMIC LIGHTBOX OVERLAY -->
+<div class="lightbox" id="customLightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightboxImg" src="" alt="Full View">
 </div>
 
 <!-- Accordion FAQ Section -->
@@ -834,7 +722,6 @@
             <a href="https://maps.google.com" target="_blank" class="btn">Petunjuk Arah</a>
         </div>
         <div class="map-wrapper">
-            <!-- Ganti URL src iframe di bawah ini menggunakan tautan semat/embed resmi dari Google Maps lokasi Anda -->
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15928.17247712398!2d115.98000000000002!3d-3.450000000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dee417387ab8c9b%3A0x6b30f32997eeff1e!2sPlajau%20Mulia%2C%20Kec.%20Simpang%20Empat%2C%20Kabupaten%20Tanah%20Bumbu%2C%20Kalimantan%20Selatan!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
@@ -846,7 +733,7 @@
         <p>Official Instagram Lookbook: <a href="https://www.instagram.com/amirrajulian_makeup" target="_blank">@amirrajulian_makeup</a></p>
     </div>
     <div class="copyright">
-        <p>&copy; 2026 Amirra Julian. All Rights Reserved. Curated for International Standard Experience.</p>
+        <p>© 2026 Amirra Julian. All Rights Reserved. Curated for International Standard Experience.</p>
     </div>
 </footer>
 
@@ -858,7 +745,7 @@
     Secure Booking
 </a>
 
-<!-- Advanced Functional JavaScript -->
+<!-- JavaScript fungsional -->
 <script>
     // 1. Scroll Reveal Logic
     function reveal() {
@@ -876,59 +763,24 @@
     window.addEventListener("scroll", reveal);
     window.addEventListener("load", reveal);
 
-    // 2. Portfolio Gallery Filter Logic
-    function filterGallery(category) {
-        // Update Active Button Style
-        const buttons = document.querySelectorAll('.filter-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-        if(event) {
-            event.target.classList.add('active');
-        }
-
-        // Filter Items
-        const items = document.querySelectorAll('.gallery-item');
-        items.forEach(item => {
-            if (category === 'all' || item.getAttribute('data-category') === category) {
-                item.classList.remove('hide');
-            } else {
-                item.classList.add('hide');
-            }
-        });
-    }
-
-    // 3. Concierge Calculator Logic
-    function calculateTotal() {
-        const checkboxes = document.querySelectorAll('.calc-checkbox');
-        let total = 0;
-        let selectedServices = [];
-
-        checkboxes.forEach(cb => {
-            if (cb.checked) {
-                total += parseInt(cb.value);
-                selectedServices.push(cb.parentElement.innerText.trim().split('\n')[0]);
-            }
-        });
-
-        // Format Currency Display
-        document.getElementById('totalDisplay').innerText = 'Rp ' + total.toLocaleString('id-ID');
-
-        // Dynamic WhatsApp Text Generator
-        const baseWaUrl = "https://wa.me/6285157813166?text=";
-        let message = "Halo Amirra Julian, saya ingin berkonsultasi mengenai paket kustom berikut:\n\n";
+    // 2. Lightbox (Pop-up Full Screen) Logic
+    function openLightbox(element) {
+        const imgSrc = element.querySelector('img').src;
+        const lightbox = document.getElementById('customLightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
         
-        if (selectedServices.length > 0) {
-            selectedServices.forEach((service, idx) => {
-                message += `${idx + 1}. ${service}\n`;
-            });
-            message += `\n*Estimasi Total:* Rp ${total.toLocaleString('id-ID')}`;
-        } else {
-            message = "Halo Amirra Julian, saya ingin membuat janji temu layanan kecantikan.";
-        }
-
-        document.getElementById('waCustomBtn').href = baseWaUrl + encodeURIComponent(message);
+        lightboxImg.src = imgSrc;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Kunci scroll utama saat pop-up aktif
     }
 
-    // 4. Accordion FAQ Logic
+    function closeLightbox() {
+        const lightbox = document.getElementById('customLightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Aktifkan scroll kembali
+    }
+
+    // 3. Accordion FAQ Logic
     function toggleFaq(element) {
         const item = element.parentElement;
         const content = item.querySelector('.faq-content');
@@ -937,13 +789,10 @@
             content.style.maxHeight = null;
             item.classList.remove('active');
         } else {
-            // Close all other FAQ items first
             document.querySelectorAll('.faq-item').forEach(el => {
                 el.classList.remove('active');
                 el.querySelector('.faq-content').style.maxHeight = null;
             });
-            
-            // Open current clicked item
             content.style.maxHeight = content.scrollHeight + "px";
             item.classList.add('active');
         }
