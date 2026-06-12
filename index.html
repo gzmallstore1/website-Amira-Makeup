@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amirra Julian | Professional Makeup, Sewa Busana & Depot Air</title>
+    <style>
+        /* Desain Profesional & Elegan */
+        :root {
+            --navy: #0a192f;
+            --gold: #c5a059;
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+            --wa-green: #25d366;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; }
+        
+        /* Navigasi */
+        header { background: var(--navy); color: var(--white); padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: bold; color: var(--gold); }
+        nav a { color: var(--white); text-decoration: none; margin-left: 25px; font-size: 1rem; transition: color 0.3s; }
+        nav a:hover { color: var(--gold); }
+
+        /* Hero Section */
+        .hero { background: var(--navy); color: var(--white); padding: 80px 5%; text-align: center; }
+        .hero h1 { color: var(--gold); font-size: 3rem; margin-bottom: 15px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 25px; }
+        .btn { display: inline-block; background: var(--gold); color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s; }
+        .btn:hover { background: #b08d4a; }
+
+        /* Layanan Section */
+        .services { padding: 80px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { border: 1px solid #ddd; padding: 30px; border-radius: 10px; text-align: center; background: var(--light-gray); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-10px); }
+        .card h3 { color: var(--navy); margin-bottom: 15px; font-size: 1.5rem; }
+
+        /* Galeri Section */
+        .gallery { padding: 80px 5%; background: var(--white); }
+        .gallery-h2 { text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--navy); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .gallery-item { height: 350px; display: flex; align-items: center; justify-content: center; border-radius: 8px; overflow: hidden; position: relative; background: #ddd; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* Footer */
+        footer { background: var(--navy); color: var(--white); text-align: center; padding: 40px; }
+        footer p { margin: 5px 0; }
+
+        /* WhatsApp Button */
+        .wa-float { position: fixed; bottom: 30px; right: 30px; background: var(--wa-green); color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; transition: transform 0.3s; }
+        .wa-float:hover { transform: scale(1.05); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            header { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Amirra Julian</div>
+    <nav>
+        <a href="#services">Layanan</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#contact">Kontak</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Amirra Julian</h1>
+    <p>Professional Makeup Artist | Penyewaan Busana | Depot Air Minum</p>
+    <a href="https://wa.me/6285157813166" class="btn">Konsultasi Sekarang</a>
+</section>
+
+<section class="services" id="services">
+    <div class="card">
+        <h3>Makeup & Kecantikan</h3>
+        <p>Wedding, Prewedding, Bridesmaid, Engagement, Graduation, dan Photoshoot.</p>
+    </div>
+    <div class="card">
+        <h3>Sewa Busana</h3>
+        <p>Kebaya Dewasa & Anak, Baju Graduation, Engagement, serta Baju Party/Kondangan.</p>
+    </div>
+    <div class="card">
+        <h3>Depot Air Minum</h3>
+        <p>Air minum bersih & segar. Layanan antar galon cepat & praktis. Gratis Ongkir Desa Plajau Mulia.</p>
+    </div>
+</section>
+
+<section class="gallery" id="gallery">
+    <h2 class="gallery-h2">Portofolio Kami</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item"><img src="foto1.jpg" alt="Makeup Wedding"></div>
+        <div class="gallery-item"><img src="foto2.jpg" alt="Kebaya Graduation"></div>
+        <div class="gallery-item"><img src="foto3.jpg" alt="Makeup Engagement"></div>
+    </div>
+</section>
+
+<footer id="contact">
+    <p>Hubungi Kami: 0851-5781-3166</p>
+    <p>Instagram: @amirrajulian_makeup</p>
+    <p>&copy; 2026 Amirra Julian - All Rights Reserved</p>
+</footer>
+
+<a href="https://wa.me/6285157813166" class="wa-float">WhatsApp Kami</a>
+
+</body>
+</html>
