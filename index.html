@@ -114,7 +114,7 @@
             align-items: center;
             position: relative;
             background: radial-gradient(circle at center, rgba(35, 30, 20, 0.4) 0%, var(--bg-dark) 75%);
-            padding: 0 10%; 
+            padding: 40px 10%; 
             text-align: center;
             overflow: hidden;
         }
@@ -150,6 +150,8 @@
             font-weight: 200;
             max-width: 700px;
             letter-spacing: 1px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Editorial Sharp Button */
@@ -174,6 +176,64 @@
             border-color: var(--text-light);
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Foto Owner Premium Styling */
+        .owner-profile-wrapper {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .owner-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--gold-premium), transparent);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .owner-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            filter: brightness(95%);
+        }
+
+        .owner-profile-wrapper:hover .owner-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.35);
+        }
+
+        .owner-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .owner-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            color: var(--text-light);
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .owner-title {
+            font-size: 0.7rem;
+            color: var(--gold-premium);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 400;
         }
 
         /* High-End Section Layout */
@@ -541,6 +601,7 @@
             .location-grid { grid-template-columns: 1fr; gap: 40px; }
             .map-wrapper { height: 300px; }
             .wa-float { bottom: 25px; right: 25px; padding: 16px 26px; font-size: 0.75rem; }
+            .owner-avatar { width: 95px; height: 95px; }
         }
     </style>
 </head>
@@ -563,6 +624,18 @@
         <h1>Amirra Julian</h1>
         <p>Mendefinisikan ulang standar kemewahan kecantikan melalui sapuan kuas kelas editorial dan kurasi busana adibusana eksklusif untuk momen paling bernilai dalam hidup Anda.</p>
         <a href="https://wa.me/6285157813166" class="btn">Book Appointment</a>
+        
+        <!-- INTEGRASI FOTO OWNER AMIRRA JULIAN -->
+        <div class="owner-profile-wrapper">
+            <div class="owner-avatar">
+                <!-- Ubah owner.jpg dengan file foto Anda (misal: owner.png atau amirra.jpg) -->
+                <img src="owner.jpg" alt="Amirra Julian Owner">
+            </div>
+            <div class="owner-meta">
+                <span class="owner-name">Amirra Julian</span>
+                <span class="owner-title">Founder & Chief Makeup Artist</span>
+            </div>
+        </div>
     </div>
 </section>
 
