@@ -246,52 +246,62 @@
             letter-spacing: 0.5px;
         }
 
-        /* Portfolio Studio Gallery dengan Tinggi Kompak */
+        /* UPGRADED: INTERNATIONAL MUA PORTFOLIO STUDIO GALLERY */
         .gallery { 
             background: #020202;
             padding: 0 10% 140px 10%; 
         }
 
-        .gallery-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 25px; /* Jarak antar foto lebih rapat dan rapi */
+        /* Menggunakan CSS Columns untuk efek Masonry Asimetris ala Vogue/Vany Fair */
+        .gallery-masonry { 
+            column-count: 3;
+            column-gap: 30px;
+            width: 100%;
         }
         
         .gallery-item { 
-            height: 380px; /* Dipersempit agar ketika banyak foto tidak memakan space panjang ke bawah */
+            break-inside: avoid;
+            margin-bottom: 30px;
             overflow: hidden; 
             position: relative; 
             background: var(--surface-dark);
             border: 1px solid var(--border-subtle);
             cursor: pointer;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
         }
         
+        /* Foto akan menyesuaikan tinggi aslinya agar tidak terpotong malformed */
         .gallery-item img { 
             width: 100%; 
-            height: 100%; 
-            object-fit: cover; /* Memotong foto secara proporsional di halaman grid */
-            filter: grayscale(30%) brightness(85%);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease; 
+            height: auto;
+            display: block;
+            filter: brightness(85%) contrast(95%);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease; 
         }
         
-        .gallery-item:hover img { 
-            transform: scale(1.05);
-            filter: grayscale(0%) brightness(100%);
+        .gallery-item:hover {
+            border-color: var(--border-hover);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.05);
         }
 
+        .gallery-item:hover img { 
+            transform: scale(1.03);
+            filter: brightness(100%) contrast(100%);
+        }
+
+        /* Lembutkan overlay teks agar lebih minimalis */
         .gallery-caption {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             z-index: 2;
-            background: linear-gradient(to top, rgba(5, 5, 5, 0.9) 0%, transparent 100%);
-            padding: 25px;
+            background: linear-gradient(to top, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.3) 70%, transparent 100%);
+            padding: 30px 25px 25px 25px;
             color: var(--text-light);
             opacity: 0;
-            transform: translateY(10px);
-            transition: transform 0.4s ease, opacity 0.4s ease;
+            transform: translateY(15px);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
         }
 
         .gallery-item:hover .gallery-caption {
@@ -300,34 +310,37 @@
         }
 
         .gallery-caption h4 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--text-light);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: 400;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .gallery-caption p {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--gold-premium);
             font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* PREMIUM LIGHTBOX (POP-UP FULL SCREEN VIEW) */
+        /* LUXURY EXPERIENCED LIGHTBOX (FULL PREVIEW OVERLAY) */
         .lightbox {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(5, 5, 5, 0.95);
+            background: rgba(4, 4, 4, 0.98);
             z-index: 2000;
             display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .lightbox.active {
@@ -336,31 +349,33 @@
         }
 
         .lightbox-content {
-            max-width: 90%;
-            max-height: 85vh;
-            object-fit: contain; /* Memastikan foto terlihat utuh/full tanpa terpotong sama sekali */
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            transform: scale(0.9);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            max-width: 92%;
+            max-height: 88vh;
+            object-fit: contain; /* Foto terlihat utuh tanpa terpotong */
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
+            transform: scale(0.97) translateY(10px);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .lightbox.active .lightbox-content {
-            transform: scale(1);
+            transform: scale(1) translateY(0);
         }
 
         .lightbox-close {
             position: absolute;
-            top: 30px;
-            right: 40px;
+            top: 40px;
+            right: 50px;
             color: var(--text-light);
-            font-size: 2.5rem;
+            font-size: 3rem;
             cursor: pointer;
-            font-weight: 200;
-            transition: color 0.3s;
+            font-weight: 100;
+            line-height: 1;
+            transition: color 0.3s, transform 0.3s;
         }
 
         .lightbox-close:hover {
             color: var(--gold-premium);
+            transform: scale(1.1);
         }
 
         /* Accordion FAQ Section */
@@ -551,6 +566,10 @@
         }
 
         /* High-End Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .gallery-masonry { column-count: 2; }
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 3.2rem; }
             .section-title { font-size: 2.6rem; }
@@ -560,8 +579,8 @@
             .location-grid { grid-template-columns: 1fr; gap: 40px; }
             .map-wrapper { height: 300px; }
             .wa-float { bottom: 25px; right: 25px; padding: 16px 26px; font-size: 0.75rem; }
-            .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
-            .gallery-item { height: 280px; }
+            .gallery-masonry { column-count: 1; column-gap: 0; }
+            .lightbox-close { top: 25px; right: 25px; font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -614,10 +633,11 @@
 <div class="gallery" id="gallery">
     <div class="section-header reveal">
         <h2 class="section-title">The Portfolio</h2>
-        <p class="section-subtitle">Eksplorasi visual karya tata rias multidimensional dan kurasi busana eksklusif oleh Amirra Julian. Klik foto untuk melihat tampilan penuh.</p>
+        <p class="section-subtitle">Eksplorasi visual karya tata rias multidimensional dan kurasi busana eksklusif oleh Amirra Julian. Klik untuk melihat detail mahakarya penuh.</p>
     </div>
     
-    <div class="gallery-grid reveal">
+    <!-- MASONRY LAYOUT (Otomatis menyusun foto seimbang secara asimetris tinggi & lebar) -->
+    <div class="gallery-masonry reveal">
         <!-- Portofolio 1 -->
         <div class="gallery-item" onclick="openLightbox(this)">
             <img src="Foto 1.jpg" alt="High-End Wedding Makeup">
@@ -646,7 +666,7 @@
         <div class="gallery-item" onclick="openLightbox(this)">
             <img src="Foto 4.jpg" alt="Premium Attire Rental Showcase">
             <div class="gallery-caption">
-                <h4>The Luxury Silhouette</h4>
+                <h4>Elegant Lookbook</h4>
                 <p>Premium Attire</p>
             </div>
         </div>
@@ -654,17 +674,17 @@
         <div class="gallery-item" onclick="openLightbox(this)">
             <img src="Foto 5.jpg" alt="Premium Attire Rental Showcase">
             <div class="gallery-caption">
-                <h4>The Luxury Silhouette</h4>
+                <h4>The Contemporary Gown</h4>
                 <p>Premium Attire</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- DYNAMIC LIGHTBOX OVERLAY -->
+<!-- DYNAMIC PREMIUM LIGHTBOX OVERLAY -->
 <div class="lightbox" id="customLightbox" onclick="closeLightbox()">
     <span class="lightbox-close">&times;</span>
-    <img class="lightbox-content" id="lightboxImg" src="" alt="Full View">
+    <img class="lightbox-content" id="lightboxImg" src="" alt="Full View Masterpiece">
 </div>
 
 <!-- Accordion FAQ Section -->
@@ -745,9 +765,9 @@
     Secure Booking
 </a>
 
-<!-- JavaScript fungsional -->
+<!-- Advanced JavaScript -->
 <script>
-    // 1. Scroll Reveal Logic
+    // 1. Scroll Reveal Animation Logic
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
@@ -763,7 +783,7 @@
     window.addEventListener("scroll", reveal);
     window.addEventListener("load", reveal);
 
-    // 2. Lightbox (Pop-up Full Screen) Logic
+    // 2. Lightbox (Pop-up Full View) Logic
     function openLightbox(element) {
         const imgSrc = element.querySelector('img').src;
         const lightbox = document.getElementById('customLightbox');
@@ -771,13 +791,13 @@
         
         lightboxImg.src = imgSrc;
         lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Kunci scroll utama saat pop-up aktif
+        document.body.style.overflow = 'hidden'; // Mengunci scroll latar belakang
     }
 
     function closeLightbox() {
         const lightbox = document.getElementById('customLightbox');
         lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Aktifkan scroll kembali
+        document.body.style.overflow = 'auto'; // Mengaktifkan kembali scroll latar belakang
     }
 
     // 3. Accordion FAQ Logic
