@@ -166,7 +166,6 @@
             letter-spacing: 3px;
             font-size: 0.8rem;
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
         }
         
         .btn:hover { 
@@ -202,7 +201,7 @@
 
         /* Asymmetrical Editorial Services */
         .services { 
-            padding: 0 10% 60px 10%;
+            padding: 0 10% 140px 10%;
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
             gap: 40px; 
@@ -246,61 +245,82 @@
             letter-spacing: 0.5px;
         }
 
-        /* UPGRADED: INTERNATIONAL MUA PORTFOLIO STUDIO GALLERY */
+        /* Portfolio Studio Gallery with Filter Feature */
         .gallery { 
             background: #020202;
             padding: 0 10% 140px 10%; 
         }
 
-        /* Menggunakan CSS Columns untuk efek Masonry Asimetris ala Vogue/Vany Fair */
-        .gallery-masonry { 
-            column-count: 3;
-            column-gap: 30px;
-            width: 100%;
+        .filter-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin: 0 15px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            color: var(--gold-premium);
+        }
+
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); 
+            gap: 40px; 
         }
         
         .gallery-item { 
-            break-inside: avoid;
-            margin-bottom: 30px;
+            height: 550px; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: flex-end;
             overflow: hidden; 
             position: relative; 
             background: var(--surface-dark);
             border: 1px solid var(--border-subtle);
-            cursor: pointer;
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .gallery-item.hide {
+            display: none;
         }
         
-        /* Foto akan menyesuaikan tinggi aslinya agar tidak terpotong malformed */
         .gallery-item img { 
             width: 100%; 
-            height: auto;
-            display: block;
-            filter: brightness(85%) contrast(95%);
+            height: 100%; 
+            object-fit: cover; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            filter: grayscale(100%) brightness(75%);
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease; 
         }
         
-        .gallery-item:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.05);
-        }
-
         .gallery-item:hover img { 
             transform: scale(1.03);
-            filter: brightness(100%) contrast(100%);
+            filter: grayscale(0%) brightness(95%);
         }
 
-        /* Lembutkan overlay teks agar lebih minimalis */
         .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            position: relative;
             z-index: 2;
-            background: linear-gradient(to top, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.3) 70%, transparent 100%);
-            padding: 30px 25px 25px 25px;
+            background: linear-gradient(to top, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.4) 75%, transparent 100%);
+            padding: 45px 35px;
             color: var(--text-light);
-            opacity: 0;
             transform: translateY(15px);
+            opacity: 0.85;
             transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
         }
 
@@ -310,72 +330,18 @@
         }
 
         .gallery-caption h4 {
-            font-size: 1.1rem;
+            font-size: 1.6rem;
             color: var(--text-light);
-            margin-bottom: 4px;
+            margin-bottom: 10px;
             font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .gallery-caption p {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             color: var(--gold-premium);
             font-weight: 300;
-            text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        /* LUXURY EXPERIENCED LIGHTBOX (FULL PREVIEW OVERLAY) */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(4, 4, 4, 0.98);
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .lightbox.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .lightbox-content {
-            max-width: 92%;
-            max-height: 88vh;
-            object-fit: contain; /* Foto terlihat utuh tanpa terpotong */
-            box-shadow: 0 0 60px rgba(0, 0, 0, 0.9);
-            transform: scale(0.97) translateY(10px);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .lightbox.active .lightbox-content {
-            transform: scale(1) translateY(0);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 40px;
-            right: 50px;
-            color: var(--text-light);
-            font-size: 3rem;
-            cursor: pointer;
-            font-weight: 100;
-            line-height: 1;
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .lightbox-close:hover {
-            color: var(--gold-premium);
-            transform: scale(1.1);
         }
 
         /* Accordion FAQ Section */
@@ -566,10 +532,6 @@
         }
 
         /* High-End Mobile Responsiveness */
-        @media (max-width: 1024px) {
-            .gallery-masonry { column-count: 2; }
-        }
-
         @media (max-width: 768px) {
             .hero h1 { font-size: 3.2rem; }
             .section-title { font-size: 2.6rem; }
@@ -579,8 +541,6 @@
             .location-grid { grid-template-columns: 1fr; gap: 40px; }
             .map-wrapper { height: 300px; }
             .wa-float { bottom: 25px; right: 25px; padding: 16px 26px; font-size: 0.75rem; }
-            .gallery-masonry { column-count: 1; column-gap: 0; }
-            .lightbox-close { top: 25px; right: 25px; font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -593,6 +553,7 @@
         <a href="#gallery">Portofolio</a>
         <a href="#faq">FAQ</a>
         <a href="#location">Lokasi</a>
+        <a href="#contact">Kontak</a>
     </nav>
 </header>
 
@@ -633,58 +594,58 @@
 <div class="gallery" id="gallery">
     <div class="section-header reveal">
         <h2 class="section-title">The Portfolio</h2>
-        <p class="section-subtitle">Eksplorasi visual karya tata rias multidimensional dan kurasi busana eksklusif oleh Amirra Julian. Klik untuk melihat detail mahakarya penuh.</p>
+        <p class="section-subtitle">Eksplorasi visual karya tata rias multidimensional dan kurasi busana eksklusif oleh Amirra Julian.</p>
+    </div>
+
+    <!-- Interactive Gallery Filter System -->
+    <div class="filter-container reveal">
+        <button class="filter-btn active" onclick="filterGallery('all')">All Works</button>
+        <button class="filter-btn" onclick="filterGallery('makeup')">Makeup Artistry</button>
+        <button class="filter-btn" onclick="filterGallery('attire')">Premium Attire</button>
     </div>
     
-    <!-- MASONRY LAYOUT (Otomatis menyusun foto seimbang secara asimetris tinggi & lebar) -->
-    <div class="gallery-masonry reveal">
+    <div class="gallery-grid reveal">
         <!-- Portofolio 1 -->
-        <div class="gallery-item" onclick="openLightbox(this)">
+        <div class="gallery-item" data-category="makeup">
             <img src="Foto 1.jpg" alt="High-End Wedding Makeup">
             <div class="gallery-caption">
                 <h4>The Couture Bride</h4>
-                <p>Makeup Artistry</p>
+                <p>Eksplorasi riasan pengantin dengan teknik eksklusif yang memancarkan aura kemewahan klasik yang timeless.</p>
             </div>
         </div>
         <!-- Portofolio 2 -->
-        <div class="gallery-item" onclick="openLightbox(this)">
+        <div class="gallery-item" data-category="makeup">
             <img src="Foto 2.jpg" alt="Editorial Graduation Look">
             <div class="gallery-caption">
                 <h4>The Milestone Radiance</h4>
-                <p>Makeup Artistry</p>
+                <p>Kombinasi riasan wajah berkarakter halus (fresh flawless) disandingkan dengan kemegahan kebaya kelulusan modern.</p>
             </div>
         </div>
         <!-- Portofolio 3 -->
-        <div class="gallery-item" onclick="openLightbox(this)">
+        <div class="gallery-item" data-category="attire">
             <img src="Foto 3.jpg" alt="Premium Attire Rental Showcase">
             <div class="gallery-caption">
                 <h4>The Luxury Silhouette</h4>
-                <p>Premium Attire</p>
+                <p>Kurasi jajaran gaun pesta pilihan yang menonjolkan keindahan potongan siluet dan kenyamanan kain kelas tinggi.</p>
             </div>
         </div>
         <!-- Portofolio 4 -->
-        <div class="gallery-item" onclick="openLightbox(this)">
+        <div class="gallery-item" data-category="attire">
             <img src="Foto 4.jpg" alt="Premium Attire Rental Showcase">
             <div class="gallery-caption">
-                <h4>Elegant Lookbook</h4>
-                <p>Premium Attire</p>
+                <h4>The Luxury Silhouette</h4>
+                <p>Kurasi jajaran gaun pesta pilihan yang menonjolkan keindahan potongan siluet dan kenyamanan kain kelas tinggi.</p>
             </div>
         </div>
         <!-- Portofolio 5 -->
-        <div class="gallery-item" onclick="openLightbox(this)">
+        <div class="gallery-item" data-category="attire">
             <img src="Foto 5.jpg" alt="Premium Attire Rental Showcase">
             <div class="gallery-caption">
-                <h4>The Contemporary Gown</h4>
-                <p>Premium Attire</p>
+                <h4>The Luxury Silhouette</h4>
+                <p>Kurasi jajaran gaun pesta pilihan yang menonjolkan keindahan potongan siluet dan kenyamanan kain kelas tinggi.</p>
             </div>
         </div>
     </div>
-</div>
-
-<!-- DYNAMIC PREMIUM LIGHTBOX OVERLAY -->
-<div class="lightbox" id="customLightbox" onclick="closeLightbox()">
-    <span class="lightbox-close">&times;</span>
-    <img class="lightbox-content" id="lightboxImg" src="" alt="Full View Masterpiece">
 </div>
 
 <!-- Accordion FAQ Section -->
@@ -753,7 +714,7 @@
         <p>Official Instagram Lookbook: <a href="https://www.instagram.com/amirrajulian_makeup" target="_blank">@amirrajulian_makeup</a></p>
     </div>
     <div class="copyright">
-        <p>© 2026 Amirra Julian. All Rights Reserved. Curated for International Standard Experience.</p>
+        <p>&copy; 2026 Amirra Julian. All Rights Reserved. Curated for International Standard Experience.</p>
     </div>
 </footer>
 
@@ -765,9 +726,9 @@
     Secure Booking
 </a>
 
-<!-- Advanced JavaScript -->
+<!-- Advanced Functional JavaScript -->
 <script>
-    // 1. Scroll Reveal Animation Logic
+    // 1. Scroll Reveal Logic
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
@@ -783,21 +744,24 @@
     window.addEventListener("scroll", reveal);
     window.addEventListener("load", reveal);
 
-    // 2. Lightbox (Pop-up Full View) Logic
-    function openLightbox(element) {
-        const imgSrc = element.querySelector('img').src;
-        const lightbox = document.getElementById('customLightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        
-        lightboxImg.src = imgSrc;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Mengunci scroll latar belakang
-    }
+    // 2. Portfolio Gallery Filter Logic
+    function filterGallery(category) {
+        // Update Active Button Style
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        if(event) {
+            event.target.classList.add('active');
+        }
 
-    function closeLightbox() {
-        const lightbox = document.getElementById('customLightbox');
-        lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Mengaktifkan kembali scroll latar belakang
+        // Filter Items
+        const items = document.querySelectorAll('.gallery-item');
+        items.forEach(item => {
+            if (category === 'all' || item.getAttribute('data-category') === category) {
+                item.classList.remove('hide');
+            } else {
+                item.classList.add('hide');
+            }
+        });
     }
 
     // 3. Accordion FAQ Logic
@@ -809,10 +773,13 @@
             content.style.maxHeight = null;
             item.classList.remove('active');
         } else {
+            // Close all other FAQ items first
             document.querySelectorAll('.faq-item').forEach(el => {
                 el.classList.remove('active');
                 el.querySelector('.faq-content').style.maxHeight = null;
             });
+            
+            // Open current clicked item
             content.style.maxHeight = content.scrollHeight + "px";
             item.classList.add('active');
         }
