@@ -1,24 +1,24 @@
-Bu<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amirra Julian | Professional Makeup, Sewa Busana & Depot Air</title>
-    <!-- Google Fonts untuk font yang lebih elegan -->
+    <title>Amirra Julian | International Luxury Makeup Artistry & Editorial Attire</title>
+    <!-- Haute Couture Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --navy: #0B192C;
-            --navy-light: #1E3E62;
-            --gold: #D4AF37;
-            --gold-hover: #AA8B2C;
-            --bg-light: #F9FAFB;
-            --text-dark: #1F2937;
-            --text-muted: #4B5563;
-            --white: #ffffff;
+            --bg-dark: #050505; /* Obsidian Black */
+            --surface-dark: #0D0D0D;
+            --gold-premium: #D4AF37; /* Burnished Gold */
+            --gold-light: #F3E5AB;
+            --text-light: #FFFFFF;
+            --text-muted: #8E8E93;
+            --border-subtle: rgba(212, 175, 55, 0.08);
+            --border-hover: rgba(212, 175, 55, 0.4);
         }
 
         * { 
@@ -27,183 +27,220 @@ Bu<!DOCTYPE html>
             padding: 0; 
         }
         
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            line-height: 1.7; 
-            color: var(--text-dark); 
-            background-color: var(--bg-light);
-        }
-
-        h1, h2, h3, .logo {
-            font-family: 'Playfair Display', serif;
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-dark);
         }
         
-        /* Navigasi Modern */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.9; 
+            color: var(--text-light); 
+            background-color: var(--bg-dark);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .logo {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+        }
+        
+        /* Fixed Editorial Navigation */
         header { 
-            background: rgba(11, 25, 44, 0.95); 
-            backdrop-filter: blur(10px);
-            color: var(--white); 
-            padding: 1.2rem 8%; 
+            background: rgba(5, 5, 5, 0.9); 
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.8rem 10%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
         
         .logo { 
-            font-size: 1.8rem; 
-            font-weight: 700; 
-            color: var(--gold); 
-            letter-spacing: 1px;
+            font-size: 2rem; 
+            font-weight: 500; 
+            color: var(--text-light); 
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .logo span {
+            color: var(--gold-premium);
         }
         
         nav a { 
-            color: var(--white); 
+            color: var(--text-muted); 
             text-decoration: none; 
-            margin-left: 30px; 
-            font-size: 0.95rem; 
-            font-weight: 600;
-            transition: color 0.3s; 
-            letter-spacing: 0.5px;
+            margin-left: 40px; 
+            font-size: 0.8rem; 
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: color 0.5s ease, letter-spacing 0.5s ease;
         }
         
         nav a:hover { 
-            color: var(--gold); 
+            color: var(--gold-premium);
+            letter-spacing: 4px;
         }
 
-        /* Hero Section Mewah */
+        /* Cinematographic Hero Section */
         .hero { 
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); 
-            color: var(--white); 
-            padding: 120px 8% 100px 8%; 
-            text-align: center; 
-            position: relative;
-            overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, rgba(35, 30, 20, 0.4) 0%, var(--bg-dark) 75%);
+            padding: 0 10%; 
+            text-align: center;
+        }
+        
+        .hero-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--gold-premium);
+            margin-bottom: 25px;
+            font-weight: 500;
         }
         
         .hero h1 { 
-            color: var(--gold); 
-            font-size: 3.5rem; 
-            margin-bottom: 20px; 
-            letter-spacing: 2px;
-            font-weight: 700;
+            color: var(--text-light); 
+            font-size: 5.5rem; 
+            margin-bottom: 30px; 
+            font-weight: 400;
+            line-height: 1.2;
+            text-transform: uppercase;
         }
         
         .hero p { 
-            font-size: 1.25rem; 
-            margin-bottom: 35px; 
-            color: #E5E7EB;
-            font-weight: 300;
+            font-size: 1.1rem; 
+            margin-bottom: 50px; 
+            color: var(--text-muted);
+            font-weight: 200;
             max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            letter-spacing: 1px;
         }
         
+        /* Editorial Sharp Button */
         .btn { 
             display: inline-block; 
-            background: linear-gradient(135deg, var(--gold) 0%, #B8932A 100%); 
-            color: var(--navy); 
-            padding: 16px 36px; 
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--gold-premium);
+            padding: 20px 45px; 
             text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: 700; 
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            transition: all 0.3s ease; 
+            border-radius: 0px; 
+            font-weight: 400; 
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .btn:hover { 
+            background: var(--text-light);
+            color: var(--bg-dark);
+            border-color: var(--text-light);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-            background: var(--gold);
-            color: var(--navy);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.05);
         }
 
-        /* Bagian Judul Section */
-        .section-title {
+        /* High-End Section Layout */
+        .section-header {
             text-align: center;
-            font-size: 2.5rem;
-            color: var(--navy);
-            margin-bottom: 15px;
-            font-weight: 700;
+            padding: 140px 10% 60px 10%;
+        }
+
+        .section-title {
+            font-size: 3.8rem;
+            color: var(--text-light);
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 20px;
         }
         
         .section-subtitle {
-            text-align: center;
             color: var(--text-muted);
-            margin-bottom: 50px;
-            font-size: 1.05rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 0.95rem;
+            max-width: 650px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
-        /* Layanan Section Terstruktur */
-        .services-container {
-            padding: 100px 8%;
-            background: var(--white);
-        }
-
+        /* Asymmetrical Editorial Services */
         .services { 
+            padding: 0 10% 140px 10%;
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
             gap: 40px; 
         }
         
         .card { 
-            border: none;
-            padding: 40px 30px; 
-            border-radius: 20px; 
-            text-align: center; 
-            background: var(--bg-light); 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            transition: all 0.4s ease; 
-            border-top: 4px solid transparent;
+            background: var(--surface-dark);
+            border: 1px solid var(--border-subtle);
+            padding: 60px 45px; 
+            border-radius: 0px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 15px 35px rgba(11, 25, 44, 0.08);
-            border-top: 4px solid var(--gold);
+            transform: translateY(-8px); 
+            border-color: var(--border-hover);
+            background: #111111;
         }
         
+        .card-num {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--gold-premium);
+            margin-bottom: 25px;
+            display: block;
+            opacity: 0.7;
+        }
+
         .card h3 { 
-            color: var(--navy); 
-            margin-bottom: 20px; 
-            font-size: 1.6rem; 
-            font-weight: 600;
+            color: var(--text-light); 
+            margin-bottom: 25px; 
+            font-size: 1.8rem; 
+            font-weight: 400;
+            text-transform: uppercase;
         }
 
         .card p {
             color: var(--text-muted);
-            font-size: 1rem;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
         }
 
-        /* Galeri Portofolio Estetik */
+        /* Editorial Portfolio Studio Gallery */
         .gallery { 
-            padding: 100px 8%; 
-            background: var(--bg-light); 
+            background: #020202;
+            padding: 0 10% 140px 10%; 
         }
         
         .gallery-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); 
+            gap: 40px; 
         }
         
         .gallery-item { 
-            height: 400px; 
+            height: 550px; 
             display: flex; 
             flex-direction: column;
             justify-content: flex-end;
-            border-radius: 16px; 
             overflow: hidden; 
             position: relative; 
-            background: #E5E7EB; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            background: var(--surface-dark);
+            border: 1px solid var(--border-subtle);
         }
         
         .gallery-item img { 
@@ -213,190 +250,232 @@ Bu<!DOCTYPE html>
             position: absolute;
             top: 0;
             left: 0;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+            filter: grayscale(100%) brightness(75%);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease; 
         }
         
         .gallery-item:hover img { 
-            transform: scale(1.08); 
+            transform: scale(1.03);
+            filter: grayscale(0%) brightness(95%);
         }
 
-        /* Caption Overlay di Atas Foto */
+        /* Glassmorphism Editorial Caption Overlay */
         .gallery-caption {
             position: relative;
             z-index: 2;
-            background: linear-gradient(to top, rgba(11, 25, 44, 0.95) 0%, rgba(11, 25, 44, 0.4) 70%, transparent 100%);
-            padding: 30px 25px 25px 25px;
-            color: var(--white);
+            background: linear-gradient(to top, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.4) 75%, transparent 100%);
+            padding: 45px 35px;
+            color: var(--text-light);
+            transform: translateY(15px);
+            opacity: 0.85;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
             transform: translateY(0);
-            transition: transform 0.3s ease;
+            opacity: 1;
         }
 
         .gallery-caption h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--gold);
-            margin-bottom: 5px;
+            font-size: 1.6rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+            font-weight: 400;
+            text-transform: uppercase;
         }
 
         .gallery-caption p {
-            font-size: 0.9rem;
-            opacity: 0.9;
+            font-size: 0.85rem;
+            color: var(--gold-premium);
             font-weight: 300;
+            letter-spacing: 1px;
         }
 
-        /* Footer Anggun */
+        /* Luxury Minimalist Footer */
         footer { 
-            background: var(--navy); 
-            color: var(--white); 
+            background: var(--bg-dark); 
+            color: var(--text-light); 
             text-align: center; 
-            padding: 60px 8% 40px 8%; 
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 100px 10% 50px 10%; 
+            border-top: 1px solid var(--border-subtle);
         }
         
         .footer-info {
-            margin-bottom: 30px;
+            margin-bottom: 50px;
         }
 
         .footer-info p { 
-            margin: 10px 0; 
-            font-size: 1.1rem;
+            margin: 15px 0; 
+            font-size: 1.3rem;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
         }
 
         .footer-info a {
-            color: var(--gold);
+            color: var(--text-light);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 400;
+            border-bottom: 1px solid var(--gold-premium);
+            transition: color 0.3s, border-color 0.3s;
+            padding-bottom: 2px;
+        }
+
+        .footer-info a:hover {
+            color: var(--gold-premium);
+            border-color: var(--text-light);
         }
 
         .copyright {
-            font-size: 0.85rem;
-            color: #9CA3AF;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 20px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 300;
         }
 
-        /* Tombol WhatsApp Melayang Cantik */
+        /* Fixed Premium Luxury CTA Button */
         .wa-float { 
             position: fixed; 
-            bottom: 30px; 
-            right: 30px; 
-            background: var(--wa-green); 
-            background: #25D366;
-            color: var(--white); 
-            padding: 16px 28px; 
-            border-radius: 50px; 
+            bottom: 40px; 
+            right: 40px; 
+            background: var(--text-light);
+            color: var(--bg-dark); 
+            padding: 20px 35px; 
+            border-radius: 0px;
             text-decoration: none; 
-            font-weight: 700; 
-            font-size: 0.95rem;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4); 
+            font-weight: 500; 
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); 
             z-index: 1000; 
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease; 
+            gap: 12px;
+            border: 1px solid var(--text-light);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
         }
         
         .wa-float:hover { 
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6); 
+            background: var(--bg-dark);
+            color: var(--text-light);
+            border-color: var(--gold-premium);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.15); 
         }
 
-        /* Responsif Mobile */
+        /* High-End Mobile Responsiveness */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.4rem; }
-            .hero p { font-size: 1.1rem; }
-            header { flex-direction: column; gap: 15px; text-align: center; padding: 1.5rem 5%; }
-            nav a { margin: 0 10px; font-size: 0.9rem; }
-            .services-container, .gallery { padding: 60px 5%; }
-            .wa-float { bottom: 20px; right: 20px; padding: 12px 22px; font-size: 0.9rem; }
+            .hero h1 { font-size: 3.2rem; }
+            .section-title { font-size: 2.6rem; }
+            header { flex-direction: column; gap: 25px; padding: 2rem 5%; }
+            nav a { margin: 0 15px; font-size: 0.75rem; letter-spacing: 2px; }
+            .services, .gallery { padding-left: 5%; padding-right: 5%; }
+            .wa-float { bottom: 25px; right: 25px; padding: 16px 26px; font-size: 0.75rem; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">Amirra Julian</div>
+    <div class="logo">Amirra <span>Julian</span></div>
     <nav>
         <a href="#services">Layanan</a>
-        <a href="#gallery">Galeri</a>
+        <a href="#gallery">Portofolio</a>
         <a href="#contact">Kontak</a>
     </nav>
 </header>
 
 <section class="hero">
+    <span class="hero-tag">High Fashion & Bridal Artistry</span>
     <h1>Amirra Julian</h1>
-    <p>Seni Rias Profesional & Penyewaan Busana Eksklusif untuk Momen Terindah dalam Hidup Anda</p>
-    <a href="https://wa.me/6285157813166" class="btn">Konsultasi Jadwal</a>
+    <p>Mendefinisikan ulang standar kemewahan kecantikan melalui sapuan kuas kelas editorial dan kurasi busana adibusana eksklusif untuk momen paling bernilai dalam hidup Anda.</p>
+    <a href="https://wa.me/6285157813166" class="btn">Book Appointment</a>
 </section>
 
-<div class="services-container" id="services">
-    <h2 class="section-title">Layanan Eksklusif</h2>
-    <p class="section-subtitle">Kami menyediakan solusi kecantikan menyeluruh, penyewaan busana adat & modern, serta pemenuhan kebutuhan harian Anda.</p>
+<div id="services">
+    <div class="section-header">
+        <h2 class="section-title">The Services</h2>
+        <p class="section-subtitle">Kombinasi layanan kelas atas yang dirancang presisi demi kepuasan penampilan estetik dan kenyamanan premium harian Anda.</p>
+    </div>
     
     <section class="services">
         <div class="card">
-            <h3>Makeup & Rias</h3>
-            <p>Sentuhan riasan wajah profesional yang tahan lama dan berkelas untuk Wedding, Prewedding, Bridesmaid, Engagement, Graduation, hingga Photoshoot.</p>
+            <span class="card-num">I // EDITORIAL & BRIDAL</span>
+            <h3>Makeup Artistry</h3>
+            <p>Seni rias wajah eksklusif berspesifikasi tinggi menggunakan produk premium internasional. Sempurna untuk Wedding, Prewedding, Rias Lamaran, Wisuda, hingga kebutuhan kamera profesional High-Fashion Photoshoot.</p>
         </div>
         <div class="card">
-            <h3>Sewa Busana</h3>
-            <p>Koleksi terbaik Kebaya Dewasa & Anak, Baju Graduation, Gaun Engagement, serta Busana elegan untuk acara pesta atau kondangan.</p>
+            <span class="card-num">II // LUXURY APPAREL</span>
+            <h3>Attire Curation</h3>
+            <p>Penyewaan lini busana premium bertekstur elegan. Menyediakan koleksi Kebaya Kebesaran Dewasa & Anak, setelan Graduation mewah, busana pertunangan, serta gaun pesta kontemporer yang prestisius.</p>
         </div>
         <div class="card">
-            <h3>Depot Air Minum</h3>
-            <p>Menyediakan air minum isi ulang yang terjamin bersih, higienis, dan segar. Layanan antar galon cepat khusus area Desa Plajau Mulia (Gratis Ongkir).</p>
+            <span class="card-num">III // ESSENTIAL LIVING</span>
+            <h3>Premium Water</h3>
+            <p>Penyediaan layanan depot air minum berkualitas tinggi dengan filtrasi higienis berstandar ketat demi kesehatan keluarga Anda. Dilengkapi layanan pengiriman kilat tanpa biaya logistik (Gratis Ongkir) khusus wilayah Desa Plajau Mulia.</p>
         </div>
     </section>
 </div>
 
-<section class="gallery" id="gallery">
-    <h2 class="section-title">Portofolio Karya</h2>
-    <p class="section-subtitle">Intip beberapa hasil riasan dan koleksi busana terbaik dari Amirra Julian.</p>
+<div class="gallery" id="gallery">
+    <div class="section-header">
+        <h2 class="section-title">The Portfolio</h2>
+        <p class="section-subtitle">Eksplorasi visual karya tata rias multidimensional dan kurasi busana eksklusif oleh Amirra Julian.</p>
+    </div>
     
     <div class="gallery-grid">
-        <!-- Foto 1 -->
+        <!-- Portofolio 1 -->
         <div class="gallery-item">
-            <img src="Foto 1.jpg" alt="Makeup Pernikahan Mewah">
+            <img src="foto1.jpg" alt="High-End Wedding Makeup">
             <div class="gallery-caption">
-                <h4>Elegansi Abadi di Hari Bahagia</h4>
-                <p>Riasan pengantin adat & modern yang flawless dan memancarkan kecantikan sejati.</p>
+                <h4>The Couture Bride</h4>
+                <p>Eksplorasi riasan pengantin dengan teknik eksklusif yang memancarkan aura kemewahan klasik yang timeless.</p>
             </div>
         </div>
-        <!-- Foto 2 -->
+        <!-- Portofolio 2 -->
         <div class="gallery-item">
-            <img src="Foto 2.jpg" alt="Kebaya Graduation Anggun">
+            <img src="foto2.jpg" alt="Editorial Graduation Look">
             <div class="gallery-caption">
-                <h4>Cantik Berkesan di Momen Prestasi</h4>
-                <p>Kombinasi makeup fresh dan sewa kebaya wisuda modis untuk hari kelulusan Anda.</p>
+                <h4>The Milestone Radiance</h4>
+                <p>Kombinasi riasan wajah berkarakter halus (fresh flawless) disandingkan dengan kemegahan kebaya kelulusan modern.</p>
             </div>
         </div>
-        <!-- Foto 3 -->
+        <!-- Portofolio 3 -->
         <div class="gallery-item">
-            <img src="Foto 3.jpg" alt="Koleksi Kebaya Pesta">
+            <img src="foto3.jpg" alt="Premium Attire Rental Showcase">
             <div class="gallery-caption">
-                <h4>Busana Eksklusif Acara Istimewa</h4>
-                <p>Koleksi sewa kebaya dan gaun terbaik yang nyaman dipakai sepanjang acara.</p>
+                <h4>The Luxury Silhouette</h4>
+                <p>Kurasi jajaran gaun pesta pilihan yang menonjolkan keindahan potongan siluet dan kenyamanan kain kelas tinggi.</p>
             </div>
         </div>
+        <!-- Portofolio 3 -->
+        <div class="gallery-item">
+            <img src="foto4.jpg" alt="Premium Attire Rental Showcase">
+            <div class="gallery-caption">
+                <h4>The Luxury Silhouette</h4>
+                <p>Kurasi jajaran gaun pesta
+            </div>
+        </div> 
     </div>
-</section>
+</div>
 
 <footer id="contact">
     <div class="footer-info">
-        <p>WhatsApp: <a href="https://wa.me/6285157813166">0851-5781-3166</a></p>
-        <p>Instagram: <a href="https://www.instagram.com/amirrajulian_makeup" target="_blank">@amirrajulian_makeup</a></p>
+        <p>Private Enquiries via WhatsApp: <a href="https://wa.me/6285157813166">0851-5781-3166</a></p>
+        <p>Official Instagram Lookbook: <a href="https://www.instagram.com/amirrajulian_makeup" target="_blank">@amirrajulian_makeup</a></p>
     </div>
     <div class="copyright">
-        <p>&copy; 2026 Amirra Julian. Dipersembahkan dengan keindahan.</p>
+        <p>&copy; 2026 Amirra Julian. All Rights Reserved. Curated for International Standard Experience.</p>
     </div>
 </footer>
 
-<!-- Tombol WhatsApp Mengambang -->
+<!-- Floating International Luxury WhatsApp Action Button -->
 <a href="https://wa.me/6285157813166" class="wa-float">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block; vertical-align:middle;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block; vertical-align:middle;">
         <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 12.008 0c3.202.001 6.212 1.249 8.477 3.52c2.266 2.27 3.51 5.284 3.508 8.491c-.004 6.66-5.34 12.008-11.952 12.008c-2.002-.001-3.973-.5-5.729-1.448L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451c5.436 0 9.86-4.42 9.864-9.864c.002-2.637-1.023-5.116-2.887-6.981C16.577 1.895 14.1 1.865 11.465 1.863c-5.439 0-9.865 4.422-9.867 9.865c0 1.692.446 3.344 1.292 4.79l-.999 3.649l3.736-.979zM16.898 14c-.267-.134-1.579-.779-1.824-.868c-.244-.089-.423-.134-.6.134c-.178.267-.689.868-.844 1.046c-.156.178-.311.201-.578.067c-.267-.134-1.127-.415-2.147-1.326c-.792-.707-1.327-1.579-1.482-1.846c-.156-.267-.017-.411.117-.544c.121-.12.267-.311.4-.467c.133-.156.178-.267.267-.445c.089-.178.044-.334-.022-.467c-.067-.134-.6-1.446-.823-1.98c-.217-.523-.436-.453-.6-.461c-.165-.008-.356-.01-.546-.01c-.19 0-.5.071-.762.356c-.262.285-1 0-.977-1 .977-2.046 2.05-3.56 2.404-4.049c-.356-.489-.699-.512-1.631-.512h-.011c-.356 0-1 .044-1.534.622c-.534.578-2.035 1.99-2.035 4.851c0 2.86 2.081 5.626 2.371 6.015c.29.389 4.092 6.25 9.911 8.765c1.384.598 2.464.955 3.306 1.222c1.39.442 2.658.38 3.66.23c1.115-.167 2.433-.994 2.775-1.959c.342-.965.342-1.793.241-1.971c-.102-.178-.372-.267-.639-.401z"/>
     </svg>
-    Hubungi WhatsApp
+    Secure Booking
 </a>
 
 </body>
