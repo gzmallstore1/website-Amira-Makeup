@@ -12,9 +12,9 @@
     
     <style>
         :root {
-            --bg-dark: #070707; /* Deep Obsidian Black */
+            --bg-dark: #070707; 
             --surface-dark: #111111;
-            --gold-premium: #dfba73; /* Champagne Muted Gold */
+            --gold-premium: #dfba73; 
             --gold-dim: #bda061;
             --text-light: #ffffff;
             --text-muted: #a0a0a0;
@@ -162,7 +162,6 @@
             max-width: 580px;
         }
         
-        /* Editorial Sharp Button */
         .btn-luxury { 
             display: inline-block; 
             background: transparent;
@@ -245,7 +244,6 @@
             letter-spacing: 2px;
         }
 
-        /* Interactive Hover for Artist Showcase */
         .artist-showcase:hover .portrait-frame {
             border-color: var(--gold-premium);
             transform: translateY(-5px);
@@ -256,7 +254,7 @@
             filter: grayscale(0%) brightness(100%);
         }
 
-        /* High-End Layout Headlines */
+        /* Headlines */
         .section-headline {
             text-align: center;
             padding: 150px 8% 80px 8%;
@@ -284,7 +282,7 @@
             font-weight: 300;
         }
 
-        /* Deconstructed Luxury Services Grid */
+        /* Services Grid */
         .editorial-services { 
             padding: 0 8% 100px 8%;
             display: grid; 
@@ -338,7 +336,7 @@
         .service-row:hover::after { width: 100%; }
         .service-row:hover { background: rgba(223, 186, 115, 0.01); }
 
-        /* Portfolio Studio Gallery System */
+        /* --- UPGRADED GALLERY: PREMIUM INSTA-GRID SYSTEM --- */
         .gallery-studio { 
             background: #020202;
             padding-bottom: 150px; 
@@ -346,7 +344,7 @@
 
         .gallery-filter {
             text-align: center;
-            margin-bottom: 70px;
+            margin-bottom: 60px;
         }
 
         .filter-trigger {
@@ -379,11 +377,11 @@
 
         .filter-trigger.active::after { width: 100%; }
 
-        /* Asymmetric Magazine-Spread Gallery Grid */
+        /* Ukuran Grid Kotak Kecil Presisi & Rapi khas Editorial High Fashion */
         .editorial-grid { 
             display: grid; 
-            grid-template-columns: repeat(12, 1fr); 
-            gap: 40px; 
+            grid-template-columns: repeat(4, 1fr); /* 4 Kotak sejajar di desktop */
+            gap: 20px; 
             padding: 0 8%;
             max-width: 1400px;
             margin: 0 auto;
@@ -394,64 +392,165 @@
             overflow: hidden; 
             background: var(--surface-dark);
             border: 1px solid var(--border-subtle);
-            transition: transform 0.5s ease;
+            aspect-ratio: 1 / 1; /* Memastikan rasio kotak sempurna */
+            cursor: pointer;
         }
 
         .grid-item.hide {
             display: none;
         }
-        
-        /* Variasi Ukuran Layout Seperti Halaman Cetak Vogue */
-        .grid-item.size-portrait { grid-column: span 4; height: 600px; }
-        .grid-item.size-landscape { grid-column: span 8; height: 600px; }
-        .grid-item.size-square { grid-column: span 6; height: 500px; }
 
         .grid-item img { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            filter: grayscale(40%) contrast(1.1);
-            transition: transform 1.2s cubic-bezier(0.15, 1, 0.3, 1), filter 0.8s ease; 
+            filter: brightness(85%) contrast(1.05);
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease; 
         }
         
         .grid-item:hover img { 
-            transform: scale(1.05);
-            filter: grayscale(0%) contrast(1);
+            transform: scale(1.06);
+            filter: brightness(100%) contrast(1);
         }
 
+        /* Minimal Luxury Hover Indicator */
         .item-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(7,7,7,0.95) 0%, rgba(7,7,7,0.2) 60%, transparent 100%);
+            background: rgba(7, 7, 7, 0.4);
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 50px 40px;
+            align-items: center;
+            justify-content: center;
             opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .item-overlay .view-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--gold-premium);
+            padding-bottom: 4px;
+            letter-spacing: 2px;
             transform: translateY(10px);
-            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .grid-item:hover .item-overlay {
             opacity: 1;
+        }
+
+        .grid-item:hover .item-overlay .view-btn {
             transform: translateY(0);
         }
 
-        .item-overlay h4 {
-            font-size: 1.5rem;
-            color: var(--text-light);
-            margin-bottom: 8px;
-            text-transform: uppercase;
+        /* --- LUXURY HIGH-QUALITY VIEW MODE (MODAL SYSTEM) --- */
+        .luxury-modal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(4, 4, 4, 0.98);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 40px;
         }
 
-        .item-overlay p {
-            font-size: 0.8rem;
+        .luxury-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr; /* layout 2 kolom premium */
+            background: #0d0d0d;
+            border: 1px solid var(--border-subtle);
+            max-width: 1100px;
+            width: 100%;
+            height: 80vh;
+            max-height: 750px;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .luxury-modal.active .modal-container {
+            transform: scale(1);
+        }
+
+        .modal-viewscreen {
+            background: #020202;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .modal-viewscreen img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Memastikan foto HQ terlihat utuh tanpa terpotong */
+        }
+
+        .modal-editorial-sidebar {
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-left: 1px solid var(--border-subtle);
+        }
+
+        .modal-editorial-sidebar .category-tag {
+            font-size: 0.75rem;
             color: var(--gold-premium);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            display: block;
         }
 
-        /* Pure Minimalist Line Accordion FAQ */
+        .modal-editorial-sidebar h3 {
+            font-size: 2rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .modal-editorial-sidebar p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+
+        .modal-close-trigger {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close-trigger:hover {
+            color: var(--gold-premium);
+        }
+
+        /* FAQ Accordion */
         .editorial-faq {
             background: #020202;
             padding: 0 8% 150px 8%;
@@ -564,7 +663,7 @@
             transform: translateY(0);
         }
 
-        /* Footer: Haute Couture Signature */
+        /* Footer */
         footer { 
             background: var(--bg-dark); 
             color: var(--text-light); 
@@ -609,7 +708,7 @@
             margin-top: 60px;
         }
 
-        /* Floating Luxury Concierge Button */
+        /* Floating Concierge Button */
         .concierge-float { 
             position: fixed; 
             bottom: 50px; 
@@ -639,23 +738,28 @@
             box-shadow: 0 35px 70px rgba(223, 186, 115, 0.15); 
         }
 
-        /* High-End Layout Balancing (Responsive) */
+        /* Responsive Layout Adjustments */
         @media (max-width: 1024px) {
             .hero-grid, .atelier-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
             .hero-statement h1 { font-size: 3.5rem; }
             .hero-statement p { margin-left: auto; margin-right: auto; }
             .portrait-frame { width: 320px; height: 430px; }
             .artist-meta { left: 50%; transform: translateX(-50%); bottom: -40px; width: 90%; }
-            .grid-item.size-portrait, .grid-item.size-landscape, .grid-item.size-square { grid-column: span 12; height: 450px; }
+            .editorial-grid { grid-template-columns: repeat(2, 1fr); } /* 2 Kolam di Tablet */
             .editorial-services { grid-template-columns: 1fr; }
             .service-row:not(:last-child) { border-right: none; }
+            .modal-container { grid-template-columns: 1fr; height: auto; max-height: 90vh; overflow-y: auto; }
+            .modal-editorial-sidebar { padding: 30px; }
+            .modal-close-trigger { top: 15px; right: 15px; color: #fff; background: rgba(0,0,0,0.5); padding: 8px 12px; }
         }
 
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 20px; padding: 1.5rem 5%; }
             nav a { margin: 0 12px; font-size: 0.7rem; letter-spacing: 2px; }
             .section-headline h2 { font-size: 2.2rem; }
+            .editorial-grid { grid-template-columns: 1fr; } /* 1 Kolam penuh di Mobile */
             .concierge-float { bottom: 25px; right: 25px; padding: 18px 28px; width: calc(100% - 50px); text-align: center; justify-content: center; }
+            .luxury-modal { padding: 15px; }
         }
     </style>
 </head>
@@ -722,12 +826,12 @@
     </section>
 </div>
 
-<!-- Dynamic Fashion Lookbook Gallery -->
+<!-- UPGRADED GALLERY SECTION -->
 <div class="gallery-studio" id="gallery">
     <div class="section-headline scroll-reveal">
         <span>The Archive</span>
         <h2>The Lookbook</h2>
-        <p class="editorial-italic">Eksplorasi estetika visual, tekstur kain, dan detail riasan adibusana.</p>
+        <p class="editorial-italic">Klik gambar untuk melihat detail sapuan kuas dalam resolusi penuh.</p>
     </div>
 
     <!-- Interactive Filter -->
@@ -737,43 +841,61 @@
         <button class="filter-trigger" onclick="applyFilter('attire')">Premium Attire</button>
     </div>
     
+    <!-- Editorial Sharp Grid -->
     <div class="editorial-grid scroll-reveal">
-        <!-- Item 1: Portrait Cover Style -->
-        <div class="grid-item size-portrait" data-category="makeup">
+        
+        <!-- Item 1 -->
+        <div class="grid-item" data-category="makeup" onclick="openLuxuryView('Foto 1.jpg', 'The Couture Bride', 'Signature High-Definition Bridal Makeup. Diproses menggunakan kompleksi ultra-thin berdaya tahan tinggi, menciptakan pantulan kilau alami yang sempurna di depan kamera lensa premium.')">
             <img src="Foto 1.jpg" alt="High-End Wedding Makeup">
             <div class="item-overlay">
-                <h4>The Couture Bride</h4>
-                <p>Signature High-Definition Bridal Makeup</p>
+                <span class="view-btn">View Masterpiece</span>
             </div>
         </div>
-        <!-- Item 2: Landscape Spread Style -->
-        <div class="grid-item size-landscape" data-category="makeup">
+
+        <!-- Item 2 -->
+        <div class="grid-item" data-category="makeup" onclick="openLuxuryView('Foto 2.jpg', 'Timeless Radiance', 'Flawless Editorial Graduation Aesthetics. Menampilkan transisi warna eyeshadow bumi yang halus dengan teknik penegasan struktur tulang wajah yang anggun.')">
             <img src="Foto 2.jpg" alt="Editorial Graduation Look">
             <div class="item-overlay">
-                <h4>Timeless Radiance</h4>
-                <p>Flawless Editorial Graduation Aesthetics</p>
+                <span class="view-btn">View Masterpiece</span>
             </div>
         </div>
-        <!-- Item 3: Balanced Square Style -->
-        <div class="grid-item size-square" data-category="attire">
+
+        <!-- Item 3 -->
+        <div class="grid-item" data-category="attire" onclick="openLuxuryView('Foto 3.jpg', 'The Luxury Silhouette', 'Curated Premium Attire & Kebaya Exhibition. Setiap helai kain dirajut menggunakan material premium pilhan untuk memastikan keanggunan sejati dalam setiap gerakan Anda.')">
             <img src="Foto 3.jpg" alt="Premium Attire Rental">
             <div class="item-overlay">
-                <h4>The Luxury Silhouette</h4>
-                <p>Curated Premium Attire & Kebaya Exhibition</p>
+                <span class="view-btn">View Masterpiece</span>
             </div>
         </div>
-        <!-- Item 4: Balanced Square Style -->
-        <div class="grid-item size-square" data-category="attire">
+
+        <!-- Item 4 -->
+        <div class="grid-item" data-category="attire" onclick="openLuxuryView('Foto 4.jpg', 'Velvet Shadows', 'Exclusive Engagement Gown Collection. Potongan kontemporer mewah dengan detail ornamen payet buatan tangan yang memancarkan pesona magis.')">
             <img src="Foto 4.jpg" alt="Premium Attire Rental">
             <div class="item-overlay">
-                <h4>Velvet Shadows</h4>
-                <p>Exclusive Engagement Gown Collection</p>
+                <span class="view-btn">View Masterpiece</span>
             </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- LUXURY FULL-SIZE VIEW SCREEN (MODAL) -->
+<div class="luxury-modal" id="luxuryModal" onclick="closeLuxuryView(event)">
+    <div class="modal-container">
+        <button class="modal-close-trigger" onclick="document.getElementById('luxuryModal').classList.remove('active')">Close ✕</button>
+        <div class="modal-viewscreen">
+            <img id="modalImage" src="" alt="Masterpiece High Quality">
+        </div>
+        <div class="modal-editorial-sidebar">
+            <span class="category-tag" id="modalTag">Atelier Archive</span>
+            <h3 id="modalTitle">Project Title</h3>
+            <p id="modalDescription">Editorial breakdown description lines go here.</p>
+            <a href="https://wa.me/6285157813166" class="btn-luxury" style="padding: 15px 30px; text-align: center;">Book This Look</a>
         </div>
     </div>
 </div>
 
-<!-- Minimalist Line Accordion FAQ -->
+<!-- FAQ Section -->
 <div class="editorial-faq scroll-reveal" id="faq">
     <div class="section-headline">
         <span>Assistance</span>
@@ -826,7 +948,7 @@
     </div>
 </section>
 
-<!-- Luxury Signature Footer -->
+<!-- Footer -->
 <footer>
     <div class="footer-brand">Amirra Julian</div>
     <p class="editorial-italic" style="color: var(--gold-premium); font-size: 1.1rem; margin-bottom: 20px;">The Art of Uncompromising Beauty.</p>
@@ -847,7 +969,6 @@
     Secure Booking
 </a>
 
-<!-- Advanced Dynamic Scripting -->
 <script>
     // Scroll Reveal Framework
     function triggerScrollReveal() {
@@ -881,7 +1002,28 @@
         });
     }
 
-    // Pure Minimalist Accordion Execution
+    // --- INTERACTIVE LUXURY MODAL ENGINE ---
+    function openLuxuryView(imageSrc, title, description) {
+        document.getElementById('modalImage').src = imageSrc;
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalDescription').innerText = description;
+        
+        // Auto-detect tag berdasarkan category data
+        const currentItem = event.currentTarget;
+        const category = currentItem.getAttribute('data-category');
+        document.getElementById('modalTag').innerText = category === 'makeup' ? 'Makeup Artistry' : 'Premium Attire';
+
+        document.getElementById('luxuryModal').classList.add('active');
+    }
+
+    function closeLuxuryView(event) {
+        // Menutup modal hanya jika area luar container yang diklik
+        if (event.target.id === 'luxuryModal') {
+            document.getElementById('luxuryModal').classList.remove('active');
+        }
+    }
+
+    // FAQ Accordion Execution
     function operateFaq(element) {
         const currentLine = element.parentElement;
         const currentPanel = currentLine.querySelector('.faq-panel');
