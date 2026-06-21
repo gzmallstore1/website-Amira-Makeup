@@ -12,14 +12,17 @@
     
     <style>
         :root {
-            --bg-dark: #070707; 
-            --surface-dark: #111111;
-            --gold-premium: #dfba73; 
-            --gold-dim: #bda061;
-            --text-light: #ffffff;
-            --text-muted: #a0a0a0;
-            --border-subtle: rgba(223, 186, 115, 0.12);
-            --border-sharp: rgba(223, 186, 115, 0.3);
+            --bg-dark: #050505; 
+            --surface-dark: #0a0a0a;
+            --surface-light: #141414;
+            --gold-premium: #e2c27e; 
+            --gold-dim: #99804e;
+            --text-light: #fdfdfd;
+            --text-muted: #8e8e8e;
+            --border-subtle: rgba(226, 194, 126, 0.15);
+            --border-sharp: rgba(226, 194, 126, 0.4);
+            --transition-slow: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-fast: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* Reset & Base Editorial Style */
@@ -40,6 +43,7 @@
             color: var(--text-light); 
             background-color: var(--bg-dark);
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
             letter-spacing: 0.5px;
         }
@@ -60,11 +64,11 @@
         
         /* Fixed Editorial Navigation */
         header { 
-            background: rgba(7, 7, 7, 0.85); 
+            background: rgba(5, 5, 5, 0.85); 
             backdrop-filter: blur(30px);
             -webkit-backdrop-filter: blur(30px);
             border-bottom: 1px solid var(--border-subtle);
-            padding: 2rem 8%; 
+            padding: 1.5rem 8%; 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
@@ -77,6 +81,7 @@
             font-size: 1.6rem; 
             text-transform: uppercase;
             color: var(--text-light); 
+            letter-spacing: 5px;
         }
 
         .logo span {
@@ -93,7 +98,7 @@
             letter-spacing: 3px;
             position: relative;
             padding-bottom: 8px;
-            transition: color 0.4s ease;
+            transition: color var(--transition-fast);
         }
         
         nav a:hover { 
@@ -108,7 +113,7 @@
             width: 0;
             height: 1px;
             background-color: var(--gold-premium);
-            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: width var(--transition-fast);
         }
 
         nav a:hover::after {
@@ -122,7 +127,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            background: radial-gradient(circle at 70% 30%, rgba(35, 32, 26, 0.5) 0%, var(--bg-dark) 70%);
+            background: radial-gradient(circle at 75% 30%, rgba(26, 23, 19, 0.4) 0%, var(--bg-dark) 80%);
             padding: 80px 8%; 
         }
         
@@ -148,9 +153,10 @@
         .hero-statement h1 { 
             color: var(--text-light); 
             font-size: 4.8rem; 
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 35px; 
             text-transform: uppercase;
+            letter-spacing: 4px;
         }
         
         .hero-statement p { 
@@ -174,21 +180,23 @@
             font-size: 0.75rem;
             position: relative;
             z-index: 1;
-            transition: color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: color 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
+            cursor: pointer;
         }
         
         .btn-luxury::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 0; height: 100%;
-            background-color: var(--text-light);
+            background-color: var(--gold-premium);
             z-index: -1;
             transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .btn-luxury:hover { 
             color: var(--bg-dark);
-            border-color: var(--text-light);
+            border-color: var(--gold-premium);
+            font-weight: 500;
         }
 
         .btn-luxury:hover::before {
@@ -203,35 +211,45 @@
 
         .portrait-frame {
             width: 380px;
-            height: 500px;
+            height: 520px;
             border: 1px solid var(--border-sharp);
-            padding: 14px;
+            padding: 15px;
             background: var(--surface-dark);
             position: relative;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.8s ease;
+            transition: transform var(--transition-slow), border-color 0.8s ease;
+        }
+
+        .portrait-frame::before {
+            content: '';
+            position: absolute;
+            top: -10px; right: -10px; bottom: -10px; left: -10px;
+            border: 1px solid var(--border-subtle);
+            z-index: -1;
+            transition: transform var(--transition-slow);
         }
 
         .portrait-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(30%) brightness(90%);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+            filter: grayscale(40%) brightness(85%);
+            transition: transform var(--transition-slow), filter 0.8s ease;
         }
 
         .artist-meta {
             position: absolute;
             bottom: -30px;
             left: -40px;
-            background: var(--bg-dark);
+            background: var(--surface-light);
             border: 1px solid var(--border-subtle);
-            padding: 25px 35px;
+            padding: 30px 40px;
             max-width: 320px;
-            box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 15px 15px 40px rgba(0,0,0,0.8);
+            z-index: 2;
         }
 
         .artist-meta h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-light);
             margin-bottom: 5px;
             font-weight: 400;
@@ -246,18 +264,22 @@
 
         .artist-showcase:hover .portrait-frame {
             border-color: var(--gold-premium);
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+        }
+
+        .artist-showcase:hover .portrait-frame::before {
+            transform: scale(1.03);
         }
 
         .artist-showcase:hover .portrait-frame img {
-            transform: scale(1.02);
+            transform: scale(1.03);
             filter: grayscale(0%) brightness(100%);
         }
 
         /* Headlines */
         .section-headline {
             text-align: center;
-            padding: 150px 8% 80px 8%;
+            padding: 160px 8% 80px 8%;
         }
 
         .section-headline span {
@@ -266,25 +288,29 @@
             letter-spacing: 6px;
             color: var(--gold-premium);
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .section-headline h2 {
-            font-size: 3.2rem;
+            font-size: 3.4rem;
             color: var(--text-light);
             text-transform: uppercase;
+            letter-spacing: 3px;
         }
         
         .section-headline p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            margin-top: 20px;
+            margin-top: 25px;
             font-weight: 300;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Services Grid */
         .editorial-services { 
-            padding: 0 8% 100px 8%;
+            padding: 0 8% 120px 8%;
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
             gap: 0; 
@@ -292,9 +318,9 @@
         }
         
         .service-row { 
-            padding: 70px 50px;
+            padding: 80px 50px;
             border-bottom: 1px solid var(--border-subtle);
-            transition: background 0.5s ease;
+            transition: background 0.6s ease;
             position: relative;
         }
         
@@ -304,11 +330,11 @@
 
         .service-id {
             font-family: 'Cinzel', serif;
-            color: var(--gold-premium);
+            color: var(--gold-dim);
             font-size: 0.85rem;
             display: block;
-            margin-bottom: 35px;
-            opacity: 0.6;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
         }
 
         .service-row h3 { 
@@ -316,12 +342,13 @@
             margin-bottom: 25px; 
             font-size: 1.8rem; 
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .service-row p {
             color: var(--text-muted);
             font-size: 0.95rem;
-            line-height: 1.9;
+            line-height: 2;
             font-weight: 300;
         }
 
@@ -330,21 +357,21 @@
             position: absolute;
             bottom: -1px; left: 0; width: 0; height: 1px;
             background-color: var(--gold-premium);
-            transition: width 0.6s ease;
+            transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .service-row:hover::after { width: 100%; }
-        .service-row:hover { background: rgba(223, 186, 115, 0.01); }
+        .service-row:hover { background: rgba(226, 194, 126, 0.02); }
 
-        /* --- UPGRADED GALLERY: PREMIUM INSTA-GRID SYSTEM --- */
+        /* --- UPGRADED GALLERY: PREMIUM INSTA-GRID SYSTEM & VIDEO SUPPORT --- */
         .gallery-studio { 
             background: #020202;
-            padding-bottom: 150px; 
+            padding-bottom: 160px; 
         }
 
         .gallery-filter {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         .filter-trigger {
@@ -355,10 +382,10 @@
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 3px;
-            margin: 0 20px;
+            margin: 0 15px;
             padding: 10px 5px;
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: color var(--transition-fast);
             position: relative;
         }
 
@@ -371,17 +398,17 @@
             position: absolute;
             bottom: 0; left: 50%; width: 0; height: 1px;
             background-color: var(--gold-premium);
-            transition: all 0.4s ease;
+            transition: all var(--transition-fast);
             transform: translateX(-50%);
         }
 
         .filter-trigger.active::after { width: 100%; }
 
-        /* Ukuran Grid Kotak Kecil Presisi & Rapi khas Editorial High Fashion */
+        /* Grid Presisi High Fashion */
         .editorial-grid { 
             display: grid; 
-            grid-template-columns: repeat(4, 1fr); /* 4 Kotak sejajar di desktop */
-            gap: 20px; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; 
             padding: 0 8%;
             max-width: 1400px;
             margin: 0 auto;
@@ -391,8 +418,7 @@
             position: relative; 
             overflow: hidden; 
             background: var(--surface-dark);
-            border: 1px solid var(--border-subtle);
-            aspect-ratio: 1 / 1; /* Memastikan rasio kotak sempurna */
+            aspect-ratio: 1 / 1.1; /* Sedikit lebih tinggi (portrait) untuk kesan fashion */
             cursor: pointer;
         }
 
@@ -400,55 +426,91 @@
             display: none;
         }
 
-        .grid-item img { 
+        .grid-item img, .grid-item video { 
             width: 100%; 
             height: 100%; 
             object-fit: cover; 
-            filter: brightness(85%) contrast(1.05);
-            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease; 
+            filter: brightness(80%) contrast(1.1);
+            transition: transform var(--transition-slow), filter 0.8s ease; 
         }
         
-        .grid-item:hover img { 
-            transform: scale(1.06);
-            filter: brightness(100%) contrast(1);
+        .grid-item:hover img, .grid-item:hover video { 
+            transform: scale(1.08);
+            filter: brightness(105%) contrast(1.05);
         }
 
         /* Minimal Luxury Hover Indicator */
         .item-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(7, 7, 7, 0.4);
+            top: 15px; right: 15px; bottom: 15px; left: 15px;
+            border: 1px solid transparent;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity var(--transition-fast), border-color var(--transition-slow);
+            z-index: 2;
+        }
+        
+        /* Dark gradient behind overlay for text readability */
+        .item-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
+        .grid-item:hover .item-overlay {
+            opacity: 1;
+            border-color: var(--border-sharp);
+        }
+
+        .view-icon {
+            margin-bottom: 15px;
+            transform: translateY(15px);
+            transition: transform var(--transition-slow);
+            color: var(--gold-premium);
         }
 
         .item-overlay .view-btn {
             font-family: 'Cinzel', serif;
             font-size: 0.75rem;
             color: var(--text-light);
-            border-bottom: 1px solid var(--gold-premium);
-            padding-bottom: 4px;
-            letter-spacing: 2px;
-            transform: translateY(10px);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transform: translateY(15px);
+            transition: transform var(--transition-slow);
         }
 
-        .grid-item:hover .item-overlay {
-            opacity: 1;
-        }
-
+        .grid-item:hover .view-icon,
         .grid-item:hover .item-overlay .view-btn {
             transform: translateY(0);
         }
 
-        /* --- LUXURY HIGH-QUALITY VIEW MODE (MODAL SYSTEM) --- */
+        /* Play icon khusus video */
+        .play-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.6);
+            color: var(--gold-premium);
+            padding: 8px 12px;
+            border: 1px solid var(--border-subtle);
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 1;
+        }
+
+        /* --- LUXURY HIGH-QUALITY VIEW MODE (MODAL SYSTEM WITH VIDEO) --- */
         .luxury-modal {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(4, 4, 4, 0.98);
+            background: rgba(2, 2, 2, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: 2000;
             display: flex;
             align-items: center;
@@ -466,16 +528,17 @@
 
         .modal-container {
             display: grid;
-            grid-template-columns: 1.2fr 1fr; /* layout 2 kolom premium */
-            background: #0d0d0d;
+            grid-template-columns: 1.3fr 1fr; 
+            background: #080808;
             border: 1px solid var(--border-subtle);
-            max-width: 1100px;
+            max-width: 1200px;
             width: 100%;
-            height: 80vh;
-            max-height: 750px;
+            height: 85vh;
+            max-height: 800px;
             position: relative;
-            transform: scale(0.95);
+            transform: scale(0.97);
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 30px 100px rgba(0,0,0,0.9);
         }
 
         .luxury-modal.active .modal-container {
@@ -483,18 +546,21 @@
         }
 
         .modal-viewscreen {
-            background: #020202;
+            background: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             height: 100%;
+            position: relative;
         }
 
-        .modal-viewscreen img {
+        .modal-viewscreen img,
+        .modal-viewscreen video {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Memastikan foto HQ terlihat utuh tanpa terpotong */
+            object-fit: contain;
+            display: none; /* Dikontrol via JS */
         }
 
         .modal-editorial-sidebar {
@@ -503,36 +569,38 @@
             flex-direction: column;
             justify-content: center;
             border-left: 1px solid var(--border-subtle);
+            background: #050505;
         }
 
         .modal-editorial-sidebar .category-tag {
             font-size: 0.75rem;
             color: var(--gold-premium);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             margin-bottom: 15px;
             display: block;
         }
 
         .modal-editorial-sidebar h3 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--text-light);
             text-transform: uppercase;
             margin-bottom: 25px;
             line-height: 1.3;
+            letter-spacing: 2px;
         }
 
         .modal-editorial-sidebar p {
             color: var(--text-muted);
             font-size: 0.95rem;
             font-weight: 300;
-            line-height: 2;
-            margin-bottom: 40px;
+            line-height: 2.2;
+            margin-bottom: 50px;
         }
 
         .modal-close-trigger {
             position: absolute;
-            top: -40px;
+            top: -45px;
             right: 0;
             background: transparent;
             border: none;
@@ -543,7 +611,7 @@
             text-transform: uppercase;
             cursor: pointer;
             padding: 5px;
-            transition: color 0.3s ease;
+            transition: color var(--transition-fast);
         }
 
         .modal-close-trigger:hover {
@@ -552,15 +620,15 @@
 
         /* FAQ Accordion */
         .editorial-faq {
-            background: #020202;
-            padding: 0 8% 150px 8%;
+            background: #030303;
+            padding: 0 8% 160px 8%;
             max-width: 900px;
             margin: 0 auto;
         }
 
         .faq-line {
             border-bottom: 1px solid var(--border-subtle);
-            padding: 30px 0;
+            padding: 35px 0;
         }
 
         .faq-bar {
@@ -570,31 +638,37 @@
             text-align: left;
             color: var(--text-light);
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            letter-spacing: 0.5px;
+            transition: color var(--transition-fast);
+        }
+        
+        .faq-bar:hover {
+            color: var(--gold-premium);
         }
 
         .faq-bar span {
             font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--gold-premium);
-            transition: transform 0.4s ease;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .faq-panel {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .faq-panel p {
             padding-top: 25px;
             color: var(--text-muted);
             font-size: 0.95rem;
-            line-height: 1.9;
+            line-height: 2.1;
             font-weight: 300;
         }
 
@@ -605,38 +679,48 @@
         /* Atelier Location Layout */
         .atelier-location {
             background: var(--bg-dark);
-            padding: 0 8% 150px 8%;
+            padding: 0 8% 160px 8%;
         }
 
         .atelier-grid {
             display: grid;
             grid-template-columns: 1fr 1.3fr;
-            gap: 80px;
+            gap: 90px;
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .atelier-details h3 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             color: var(--text-light);
             margin-bottom: 30px;
             text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         .atelier-details p {
             color: var(--text-muted);
             font-size: 1rem;
-            line-height: 2;
-            margin-bottom: 40px;
+            line-height: 2.2;
+            margin-bottom: 45px;
             font-weight: 300;
         }
 
         .map-frame-box {
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--border-sharp);
             padding: 15px;
-            background: var(--surface-dark);
-            height: 450px;
+            background: var(--surface-light);
+            height: 480px;
+            position: relative;
+        }
+
+        .map-frame-box::before {
+            content: '';
+            position: absolute;
+            top: -10px; right: -10px; bottom: -10px; left: -10px;
+            border: 1px solid var(--border-subtle);
+            z-index: -1;
         }
 
         .map-frame-box iframe {
@@ -644,18 +728,18 @@
             height: 100%;
             border: none;
             filter: grayscale(100%) invert(90%) contrast(90%);
-            transition: filter 0.6s ease;
+            transition: filter var(--transition-slow);
         }
 
         .map-frame-box:hover iframe {
-            filter: grayscale(0%) invert(0%) contrast(100%);
+            filter: grayscale(10%) invert(0%) contrast(100%);
         }
 
         /* Scroll Animation Triggers */
         .scroll-reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(50px);
+            transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .scroll-reveal.visible {
@@ -665,38 +749,40 @@
 
         /* Footer */
         footer { 
-            background: var(--bg-dark); 
+            background: #020202; 
             color: var(--text-light); 
             text-align: center; 
-            padding: 120px 8% 60px 8%; 
+            padding: 130px 8% 70px 8%; 
             border-top: 1px solid var(--border-subtle);
         }
         
         .footer-brand {
             font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             text-transform: uppercase;
-            letter-spacing: 6px;
+            letter-spacing: 8px;
             margin-bottom: 20px;
         }
 
         .footer-channels {
-            margin: 40px 0;
+            margin: 45px 0;
         }
 
         .footer-channels a {
             color: var(--text-light);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin: 0 25px;
-            border-bottom: 1px solid var(--gold-premium);
-            padding-bottom: 5px;
-            transition: all 0.4s ease;
+            border-bottom: 1px solid var(--border-sharp);
+            padding-bottom: 6px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all var(--transition-fast);
         }
 
         .footer-channels a:hover {
             color: var(--gold-premium);
-            border-color: var(--text-light);
+            border-color: var(--gold-premium);
         }
 
         .copyright-text {
@@ -705,7 +791,8 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             font-weight: 300;
-            margin-top: 60px;
+            margin-top: 70px;
+            opacity: 0.7;
         }
 
         /* Floating Concierge Button */
@@ -715,49 +802,49 @@
             right: 50px; 
             background: var(--text-light);
             color: var(--bg-dark); 
-            padding: 22px 40px; 
+            padding: 22px 45px; 
             text-decoration: none; 
             font-weight: 500; 
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4); 
+            letter-spacing: 4px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5); 
             z-index: 1000; 
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             border: 1px solid var(--text-light);
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
         
         .concierge-float:hover { 
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             background: var(--bg-dark);
-            color: var(--text-light);
+            color: var(--gold-premium);
             border-color: var(--gold-premium);
-            box-shadow: 0 35px 70px rgba(223, 186, 115, 0.15); 
+            box-shadow: 0 35px 70px rgba(226, 194, 126, 0.15); 
         }
 
         /* Responsive Layout Adjustments */
         @media (max-width: 1024px) {
-            .hero-grid, .atelier-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
+            .hero-grid, .atelier-grid { grid-template-columns: 1fr; gap: 70px; text-align: center; }
             .hero-statement h1 { font-size: 3.5rem; }
             .hero-statement p { margin-left: auto; margin-right: auto; }
-            .portrait-frame { width: 320px; height: 430px; }
+            .portrait-frame { width: 320px; height: 430px; margin: 0 auto; }
             .artist-meta { left: 50%; transform: translateX(-50%); bottom: -40px; width: 90%; }
-            .editorial-grid { grid-template-columns: repeat(2, 1fr); } /* 2 Kolam di Tablet */
+            .editorial-grid { grid-template-columns: repeat(2, 1fr); }
             .editorial-services { grid-template-columns: 1fr; }
             .service-row:not(:last-child) { border-right: none; }
             .modal-container { grid-template-columns: 1fr; height: auto; max-height: 90vh; overflow-y: auto; }
-            .modal-editorial-sidebar { padding: 30px; }
-            .modal-close-trigger { top: 15px; right: 15px; color: #fff; background: rgba(0,0,0,0.5); padding: 8px 12px; }
+            .modal-editorial-sidebar { padding: 40px; border-left: none; border-top: 1px solid var(--border-subtle); }
+            .modal-close-trigger { top: 15px; right: 15px; color: #fff; background: rgba(0,0,0,0.6); padding: 10px 15px; z-index: 10;}
         }
 
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 20px; padding: 1.5rem 5%; }
-            nav a { margin: 0 12px; font-size: 0.7rem; letter-spacing: 2px; }
+            nav a { margin: 0 10px; font-size: 0.65rem; letter-spacing: 2px; }
             .section-headline h2 { font-size: 2.2rem; }
-            .editorial-grid { grid-template-columns: 1fr; } /* 1 Kolam penuh di Mobile */
+            .editorial-grid { grid-template-columns: 1fr; }
             .concierge-float { bottom: 25px; right: 25px; padding: 18px 28px; width: calc(100% - 50px); text-align: center; justify-content: center; }
             .luxury-modal { padding: 15px; }
         }
@@ -826,12 +913,12 @@
     </section>
 </div>
 
-<!-- UPGRADED GALLERY SECTION -->
+<!-- UPGRADED GALLERY & VIDEO SECTION -->
 <div class="gallery-studio" id="gallery">
     <div class="section-headline scroll-reveal">
         <span>The Archive</span>
-        <h2>The Lookbook</h2>
-        <p class="editorial-italic">Klik gambar untuk melihat detail sapuan kuas dalam resolusi penuh.</p>
+        <h2>The Lookbook & Film</h2>
+        <p class="editorial-italic">Telusuri arsip mahakarya visual kami. Klik untuk memutar resolusi penuh.</p>
     </div>
 
     <!-- Interactive Filter -->
@@ -839,58 +926,87 @@
         <button class="filter-trigger active" onclick="applyFilter('all')">All Portfolios</button>
         <button class="filter-trigger" onclick="applyFilter('makeup')">Makeup Artistry</button>
         <button class="filter-trigger" onclick="applyFilter('attire')">Premium Attire</button>
+        <button class="filter-trigger" onclick="applyFilter('video')">Cinematography</button>
     </div>
     
     <!-- Editorial Sharp Grid -->
     <div class="editorial-grid scroll-reveal">
         
-        <!-- Item 1 -->
-        <div class="grid-item" data-category="makeup" onclick="openLuxuryView('Foto 1.jpg', 'The Couture Bride', 'Signature High-Definition Bridal Makeup. Diproses menggunakan kompleksi ultra-thin berdaya tahan tinggi, menciptakan pantulan kilau alami yang sempurna di depan kamera lensa premium.')">
+        <!-- Image Item 1 -->
+        <div class="grid-item" data-category="makeup" onclick="openLuxuryMedia('image', 'Foto 1.jpg', 'The Couture Bride', 'Signature High-Definition Bridal Makeup. Diproses menggunakan kompleksi ultra-thin berdaya tahan tinggi, menciptakan pantulan kilau alami yang sempurna di depan kamera lensa premium.', 'Bridal Artistry')">
             <img src="Foto 1.jpg" alt="High-End Wedding Makeup">
             <div class="item-overlay">
-                <span class="view-btn">View Masterpiece</span>
+                <svg class="view-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span class="view-btn">View Image</span>
             </div>
         </div>
 
-        <!-- Item 2 -->
-        <div class="grid-item" data-category="makeup" onclick="openLuxuryView('Foto 2.jpg', 'Timeless Radiance', 'Flawless Editorial Graduation Aesthetics. Menampilkan transisi warna eyeshadow bumi yang halus dengan teknik penegasan struktur tulang wajah yang anggun.')">
+        <!-- Video Item 1 -->
+        <div class="grid-item" data-category="video" onclick="openLuxuryMedia('video', 'Video 1.mp4', 'BTS Editorial Campaign', 'Cuplikan sinematik di balik layar pengerjaan mahakarya kami. Menangkap detail presisi teknik kuas, kilau material busana, dan atmosfer eksklusif sesi foto berstandar majalah mode internasional.', 'Cinematography')">
+            <span class="play-badge">Play Film</span>
+            <!-- Menampilkan video secara diam (muted/loop) sebagai thumbnail bergerak, atau gunakan gambar placeholder jika video berat -->
+            <video src="Video 1.mp4" autoplay loop muted playsinline></video>
+            <div class="item-overlay">
+                <svg class="view-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <span class="view-btn">Watch Film</span>
+            </div>
+        </div>
+
+        <!-- Image Item 2 -->
+        <div class="grid-item" data-category="makeup" onclick="openLuxuryMedia('image', 'Foto 2.jpg', 'Timeless Radiance', 'Flawless Editorial Graduation Aesthetics. Menampilkan transisi warna eyeshadow bumi yang halus dengan teknik penegasan struktur tulang wajah yang anggun.', 'Makeup Artistry')">
             <img src="Foto 2.jpg" alt="Editorial Graduation Look">
             <div class="item-overlay">
-                <span class="view-btn">View Masterpiece</span>
+                <svg class="view-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span class="view-btn">View Image</span>
             </div>
         </div>
 
-        <!-- Item 3 -->
-        <div class="grid-item" data-category="attire" onclick="openLuxuryView('Foto 3.jpg', 'The Luxury Silhouette', 'Curated Premium Attire & Kebaya Exhibition. Setiap helai kain dirajut menggunakan material premium pilhan untuk memastikan keanggunan sejati dalam setiap gerakan Anda.')">
+        <!-- Image Item 3 -->
+        <div class="grid-item" data-category="attire" onclick="openLuxuryMedia('image', 'Foto 3.jpg', 'The Luxury Silhouette', 'Curated Premium Attire & Kebaya Exhibition. Setiap helai kain dirajut menggunakan material premium pilhan untuk memastikan keanggunan sejati dalam setiap gerakan Anda.', 'Couture Attire')">
             <img src="Foto 3.jpg" alt="Premium Attire Rental">
             <div class="item-overlay">
-                <span class="view-btn">View Masterpiece</span>
+                <svg class="view-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span class="view-btn">View Image</span>
             </div>
         </div>
 
-        <!-- Item 4 -->
-        <div class="grid-item" data-category="attire" onclick="openLuxuryView('Foto 4.jpg', 'Velvet Shadows', 'Exclusive Engagement Gown Collection. Potongan kontemporer mewah dengan detail ornamen payet buatan tangan yang memancarkan pesona magis.')">
+        <!-- Video Item 2 -->
+        <div class="grid-item" data-category="video" onclick="openLuxuryMedia('video', 'Video 2.mp4', 'The Grandeur Wedding', 'Rekaman sinematik mahakarya riasan pengantin eksklusif. Menyorot ketahanan makeup di bawah pencahayaan ekstrem (lighting panggung) serta pesona gaun adibusana pada hari sakral.', 'Bridal Cinematography')">
+            <span class="play-badge">Play Film</span>
+            <video src="Video 2.mp4" autoplay loop muted playsinline></video>
+            <div class="item-overlay">
+                <svg class="view-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <span class="view-btn">Watch Film</span>
+            </div>
+        </div>
+
+        <!-- Image Item 4 -->
+        <div class="grid-item" data-category="attire" onclick="openLuxuryMedia('image', 'Foto 4.jpg', 'Velvet Shadows', 'Exclusive Engagement Gown Collection. Potongan kontemporer mewah dengan detail ornamen payet buatan tangan yang memancarkan pesona magis.', 'Couture Attire')">
             <img src="Foto 4.jpg" alt="Premium Attire Rental">
             <div class="item-overlay">
-                <span class="view-btn">View Masterpiece</span>
+                <svg class="view-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                <span class="view-btn">View Image</span>
             </div>
         </div>
 
     </div>
 </div>
 
-<!-- LUXURY FULL-SIZE VIEW SCREEN (MODAL) -->
+<!-- LUXURY FULL-SIZE VIEW SCREEN (MODAL) WITH VIDEO SUPPORT -->
 <div class="luxury-modal" id="luxuryModal" onclick="closeLuxuryView(event)">
     <div class="modal-container">
-        <button class="modal-close-trigger" onclick="document.getElementById('luxuryModal').classList.remove('active')">Close ✕</button>
+        <button class="modal-close-trigger" onclick="closeLuxuryViewForce()">Close ✕</button>
         <div class="modal-viewscreen">
+            <!-- Image Frame -->
             <img id="modalImage" src="" alt="Masterpiece High Quality">
+            <!-- Video Frame -->
+            <video id="modalVideo" src="" controls playsinline preload="metadata"></video>
         </div>
         <div class="modal-editorial-sidebar">
             <span class="category-tag" id="modalTag">Atelier Archive</span>
             <h3 id="modalTitle">Project Title</h3>
             <p id="modalDescription">Editorial breakdown description lines go here.</p>
-            <a href="https://wa.me/6285157813166" class="btn-luxury" style="padding: 15px 30px; text-align: center;">Book This Look</a>
+            <a href="https://wa.me/6285157813166" class="btn-luxury" style="padding: 18px 30px; text-align: center; width: 100%;">Reserve This Look</a>
         </div>
     </div>
 </div>
@@ -951,7 +1067,7 @@
 <!-- Footer -->
 <footer>
     <div class="footer-brand">Amirra Julian</div>
-    <p class="editorial-italic" style="color: var(--gold-premium); font-size: 1.1rem; margin-bottom: 20px;">The Art of Uncompromising Beauty.</p>
+    <p class="editorial-italic" style="color: var(--gold-premium); font-size: 1.2rem; margin-bottom: 25px;">The Art of Uncompromising Beauty.</p>
     
     <div class="footer-channels scroll-reveal">
         <a href="https://wa.me/6285157813166">Direct Line</a>
@@ -963,7 +1079,7 @@
 
 <!-- Premium Concierge Floating Button -->
 <a href="https://wa.me/6285157813166" class="concierge-float">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block; vertical-align:middle;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block; vertical-align:middle;">
         <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 12.008 0c3.202.001 6.212 1.249 8.477 3.52c2.266 2.27 3.51 5.284 3.508 8.491c-.004 6.66-5.34 12.008-11.952 12.008c-2.002-.001-3.973-.5-5.729-1.448L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451c5.436 0 9.86-4.42 9.864-9.864c.002-2.637-1.023-5.116-2.887-6.981C16.577 1.895 14.1 1.865 11.465 1.863c-5.439 0-9.865 4.422-9.867 9.865c0 1.692.446 3.344 1.292 4.79l-.999 3.649l3.736-.979zM16.898 14c-.267-.134-1.579-.779-1.824-.868c-.244-.089-.423-.134-.6.134c-.178.267-.689.868-.844 1.046c-.156.178-.311.201-.578.067c-.267-.134-1.127-.415-2.147-1.326c-.792-.707-1.327-1.579-1.482-1.846c-.156-.267-.017-.411.117-.544c.121-.12.267-.311.4-.467c.133-.156.178-.267.267-.445c.089-.178.044-.334-.022-.467c-.067-.134-.6-1.446-.823-1.98c-.217-.523-.436-.453-.6-.461c-.165-.008-.356-.01-.546-.01c-.19 0-.5.071-.762.356c-.262.285-1 0-.977-1 .977-2.046 2.05-3.56 2.404-4.049c-.356-.489-.699-.512-1.631-.512h-.011c-.356 0-1 .044-1.534.622c-.534.578-2.035 1.99-2.035 4.851c0 2.86 2.081 5.626 2.371 6.015c.29.389 4.092 6.25 9.911 8.765c1.384.598 2.464.955 3.306 1.222c1.39.442 2.658.38 3.66.23c1.115-.167 2.433-.994 2.775-1.959c.342-.965.342-1.793.241-1.971c-.102-.178-.372-.267-.639-.401z"/>
     </svg>
     Secure Booking
@@ -986,7 +1102,7 @@
     window.addEventListener("scroll", triggerScrollReveal);
     window.addEventListener("load", triggerScrollReveal);
 
-    // Lookbook Gallery Filter Algorithm
+    // Lookbook Gallery Filter Algorithm (Image & Video)
     function applyFilter(category) {
         const triggers = document.querySelectorAll('.filter-trigger');
         triggers.forEach(trig => trig.classList.remove('active'));
@@ -1002,24 +1118,42 @@
         });
     }
 
-    // --- INTERACTIVE LUXURY MODAL ENGINE ---
-    function openLuxuryView(imageSrc, title, description) {
-        document.getElementById('modalImage').src = imageSrc;
+    // --- INTERACTIVE LUXURY MEDIA MODAL (IMAGES & VIDEOS) ---
+    function openLuxuryMedia(mediaType, srcUrl, title, description, categoryTag) {
+        const imgElement = document.getElementById('modalImage');
+        const videoElement = document.getElementById('modalVideo');
+        
+        // Setup Media Display
+        if(mediaType === 'video') {
+            imgElement.style.display = 'none';
+            videoElement.style.display = 'block';
+            videoElement.src = srcUrl;
+            videoElement.play(); // Auto-play video saat dibuka
+        } else {
+            videoElement.style.display = 'none';
+            videoElement.pause(); // Hentikan video jika ada yang memutar
+            imgElement.style.display = 'block';
+            imgElement.src = srcUrl;
+        }
+
+        // Setup Editorial Texts
         document.getElementById('modalTitle').innerText = title;
         document.getElementById('modalDescription').innerText = description;
-        
-        // Auto-detect tag berdasarkan category data
-        const currentItem = event.currentTarget;
-        const category = currentItem.getAttribute('data-category');
-        document.getElementById('modalTag').innerText = category === 'makeup' ? 'Makeup Artistry' : 'Premium Attire';
+        document.getElementById('modalTag').innerText = categoryTag;
 
+        // Open Modal
         document.getElementById('luxuryModal').classList.add('active');
     }
 
+    function closeLuxuryViewForce() {
+        document.getElementById('luxuryModal').classList.remove('active');
+        document.getElementById('modalVideo').pause(); // Berhentikan video saat modal ditutup
+    }
+
     function closeLuxuryView(event) {
-        // Menutup modal hanya jika area luar container yang diklik
+        // Menutup modal hanya jika area luar container yang diklik (area gelap)
         if (event.target.id === 'luxuryModal') {
-            document.getElementById('luxuryModal').classList.remove('active');
+            closeLuxuryViewForce();
         }
     }
 
